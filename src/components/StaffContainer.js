@@ -7,6 +7,7 @@ function StaffContainer() {
     <div>StaffContainer
         <StaffCard /> 
         <StaffEditor />
+        <button>New Form Here</button>
     </div>
   )
 }
