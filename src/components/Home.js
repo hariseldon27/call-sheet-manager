@@ -1,6 +1,7 @@
 import React from 'react'
 import StaffContainer from './StaffContainer'
 
+import { Link } from 'react-router-dom'
 function Home() {
 
 
@@ -10,9 +11,14 @@ function Home() {
       <nav>nav</nav>
 
         <h1>Home</h1>
-        <button> Staff </button>
-        <button> Events </button>
-        <button> Call Sheets </button>
+       <Link to={'/staff'}>Staff </Link>
+       <br></br>
+       <Link to={'/events'}>Events </Link>
+       <br></br>
+       <Link to={'/callsheets'}> Call Sheet</Link>
+        
+
+
         <ul> viewer
           <li>placeholder viewer</li>
           <li>placeholder viewer</li>
