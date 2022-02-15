@@ -4,9 +4,11 @@
         {
     "id": 1,
     "name": "Joe Handy",
+    "department": "lighting",
     "phone": "555-555-1212",
     "email": "hello@hello.net",
-    "department": "lighting"
+    "calltime": "11:00 am",
+    "notes": "joe is handy"
         } 
 ],
     "events": [

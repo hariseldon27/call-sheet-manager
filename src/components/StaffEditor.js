@@ -5,7 +5,8 @@ function StaffEditor() {
 const [ newStaff, setNewStaff ] = useState({
   name: '',
   department: '',
-  contact: '',
+  phone: '',
+  email: '',
   calltime: '',
   notes: ''
 })
@@ -26,7 +27,7 @@ function handleStaffSubmit (e){
 
 function handleStaffChange(e) {
   console.log(e.target)
-
+  setNewStaff((currentStaffState) => ({...currentStaffState, [e.target.name]:e.target.value }))
 }
 
 
@@ -37,23 +38,39 @@ function handleStaffChange(e) {
     <input 
         type="text"
         name="name"
-        placeholder="Name here"/>
+        placeholder="Name here"
+        value={newStaff.name} 
+        onChange={handleStaffChange}/>
     <input
         type="text"
         name="department"
-        placeholder="Department/role here" />
+        placeholder="Department/role here" 
+        value={newStaff.department}
+        onChange={handleStaffChange}/>
     <input 
         type="text"
-        name="contact"
-        placeholder="Contact here" />
+        name="phone"
+        placeholder="Phone number here"
+        value={newStaff.phone} 
+        onChange={handleStaffChange}/>
+    <input 
+        type="text"
+        name="email"
+        placeholder="E-mail here"
+        value={newStaff.email} 
+        onChange={handleStaffChange}/>
     <input 
         type="text"
         name="calltime"
-        placeholder="Calltime here.." />
+        placeholder="Calltime here.." 
+        value={newStaff.calltime}
+        onChange={handleStaffChange}/>
     <input
         type="text"
         name="notes"
-        placeholder="Notes here.." />
+        placeholder="Notes here.." 
+        value={newStaff.notes}
+        onChange={handleStaffChange}/>
    
     <input type="submit" value="Submit" />
 
