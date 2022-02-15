@@ -44,7 +44,7 @@ function handleStaffChange(e) {
         value={newStaff.name} 
         onChange={handleStaffChange}/>
      <input 
-        type="Url"
+        type="image"
         name="photo"
         placeholder="photo here"
         value={newStaff.photo} 
@@ -63,13 +63,13 @@ function handleStaffChange(e) {
         value={newStaff.phone} 
         onChange={handleStaffChange}/>
     <input 
-        type="text"
+        type="email"
         name="email"
         placeholder="E-mail here"
         value={newStaff.email} 
         onChange={handleStaffChange}/>
     <input 
-        type="text"
+        type="time"
         name="calltime"
         placeholder="Calltime here.." 
         value={newStaff.calltime}

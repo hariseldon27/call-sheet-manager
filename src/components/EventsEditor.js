@@ -41,9 +41,9 @@ function handleEventChange(e){
          onChange={handleEventChange}
          />      
      <input 
-        type="text"
+        type="date"
         name="date"
-         placeholder="Date here.."
+        
          value={newEvent.date}
          onChange={handleEventChange}
          />         
