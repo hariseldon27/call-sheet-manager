@@ -4,6 +4,7 @@ function StaffEditor() {
 
 const [ newStaff, setNewStaff ] = useState({
   name: '',
+  photo: '',
   department: '',
   phone: '',
   email: '',
@@ -21,7 +22,8 @@ function handleStaffSubmit (e){
       body: JSON.stringify(newStaff)
   })
   .then(r => r.json())
-  .then(data => console.log(data))
+  .then(data => setNewStaff((currentStaff) => [...currentStaff, data]))
+  .reset();
 }
 
 
@@ -41,6 +43,13 @@ function handleStaffChange(e) {
         placeholder="Name here"
         value={newStaff.name} 
         onChange={handleStaffChange}/>
+     <input 
+        type="Url"
+        name="photo"
+        placeholder="photo here"
+        value={newStaff.photo} 
+        onChange={handleStaffChange}/>
+      
     <input
         type="text"
         name="department"

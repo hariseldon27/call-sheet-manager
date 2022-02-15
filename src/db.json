@@ -1,22 +1,42 @@
 {
-  "staff": 
-    [
-        {
-    "id": 1,
-    "name": "Joe Handy",
-    "department": "lighting",
-    "phone": "555-555-1212",
-    "email": "hello@hello.net",
-    "calltime": "11:00 am",
-    "notes": "joe is handy"
-        } 
-],
-    "events": [
-         {
-            "id": 1,
-            "name": "pottery barn photo-op",
-            "location": "",
-            "date": ""
-            }
-    ]
+  "staff": [
+    {
+      "id": 1,
+      "photo": "placeholder",
+      "name": "Joe Handy",
+      "department": "lighting",
+      "phone": "555-555-1212",
+      "email": "hello@hello.net",
+      "calltime": "11:00 am",
+      "notes": "joe is handy"
+    },
+    {
+      "name": "Nancy Drew",
+      "photo": "placeholder",
+      "department": "Actress",
+      "phone": "1-222-333-4444",
+      "email": "mystery@nacny.com",
+      "calltime": "3:30 pm",
+      "notes": "needs wardrobe ",
+      "id": 2
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "name": "pottery barn photo-op",
+      "date": "",
+      "duration": "",
+      "location": "",
+      "directions": ""
+    },
+    {
+      "name": "",
+      "date": "",
+      "duration": "",
+      "location": "",
+      "directions": "",
+      "id": 2
+    }
+  ]
 }
