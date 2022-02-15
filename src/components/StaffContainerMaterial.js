@@ -16,6 +16,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import StaffListingCard from './StaffListingCard'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -50,7 +51,8 @@ useEffect(() => {
 const staffCardRender = staffList.map((staffPerson) => {
   return (
     <Grid item key={staffPerson} xs={6} sm={6} md={4}>
-        <StaffCard key={staffPerson.id} staffPerson={staffPerson} />
+        <StaffListingCard key={staffPerson.id} staffPerson={staffPerson} />
+        {/* <Card  */}
     </Grid>
 
   )

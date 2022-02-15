@@ -15,30 +15,18 @@ import { deepOrange } from '@mui/material/colors';
 
 
 
-function StaffCard( {  } ) {
+function StaffCard( { staffPerson } ) {
 
-  const [ staffMember, setStaffMember ] = useState(null)
- 
-  const { name, phone, email, department, photo, calltime, notes } = {...staffMember}
-
- const {id} = useParams()
-
-  useEffect(() => {
-      fetch(`http://localhost:3000/staff/${id}`)
-      .then(r => r.json())
-      .then(setStaffMember)
-  },[id])
-
-  if (!staffMember) return <h2>Loading...</h2>
+const { name, phone, email, department, photo, calltime, notes } = {...staffPerson}
 
 
+if (!staffPerson) return <h2>Loading...</h2>
 
-  return (
+return (
     <Box sx={{
       alignContent: 'center',
       display: 'grid',
       textAlign: 'center',
-      m: 3,
       p: 2,
       backgroundColor: '#003c6c'
 
@@ -46,7 +34,7 @@ function StaffCard( {  } ) {
       <Box sx={{
         flexGrow: 1,
         backgroundColor: '#3378af',
-        width: 300,
+        width: 'auto',
         alignContent: 'center',
         display: 'grid',
         mx: 'auto'
@@ -54,7 +42,7 @@ function StaffCard( {  } ) {
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
-            height="140"
+            height="auto"
             image={photo}
             alt="staff headshot"
           />
