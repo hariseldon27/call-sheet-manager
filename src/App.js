@@ -2,7 +2,7 @@
 import './App.css';
 import Home from './components/Home';
 import { 
-  BrowserRouter as Router,
+
   Switch, 
   Route 
   } from 'react-router-dom'
@@ -14,22 +14,22 @@ import EventsCard from './components/EventsCard';
 
 function App() {
   return (
-  <Router> 
+   
     <div className="App">
       <Switch>
         <Route exact path='/'> 
             <Home />
         </Route>
-        <Route exact path='/staff/:id'>
+        <Route path='/staff/:id'>
               <StaffCard />
         </Route>
-        <Route path="/staff">
+        <Route exact path="/staff">
               <StaffContainer />
         </Route>
-        <Route exact path="/events/:id">
+        <Route path="/events/:id">
             <EventsCard />
         </Route>
-        <Route path="/events" >
+        <Route exact path="/events" >
               <EventsContainer />
         </Route>
         <Route path="/callsheets">
@@ -37,7 +37,7 @@ function App() {
         </Route>
       </Switch>
     </div>
-    </Router>
+  
   );
 }
 

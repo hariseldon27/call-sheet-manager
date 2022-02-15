@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-function StaffCard( {staffPerson }) {
- const { id , name, phone, email, department} = staffPerson
-  const params = useParams()
 
-  console.log(params)
+function StaffCard( ) {
+
+  const [ staffMember, setStaffMember ] = useState(null)
+ 
+  const { name, phone, email, department} = {...staffMember}
+
+ const {id} = useParams()
+  useEffect(() => {
+      fetch(`http://localhost:3000/staff/${id}`)
+      .then(r => r.json())
+      .then(setStaffMember)
+  },[id])
 
 
   return (
     <div>
       StaffCard
+      {/* {staffMember} */}
       <h2> {name}</h2>
       <p> {phone}</p>
       <p> {email}</p>
