@@ -1,35 +1,40 @@
 import React, { useState } from 'react'
 
-function StaffEditor() {
+function StaffEditor({ addStaff, staff, setStaff }) {
 
-const [ newStaff, setNewStaff ] = useState({
-  name: '',
-  photo: '',
-  department: '',
-  phone: '',
-  email: '',
-  calltime: '',
-  notes: ''
-})
+  // const [ staff, setStaff ] = useState({
+  //   name: '',
+  //   photo: '',
+  //   department: '',
+  //   phone: '',
+  //   email: '',
+  //   calltime: '',
+  //   notes: ''
+  // })
+
 
 function handleStaffSubmit (e){
   e.preventDefault();
   fetch('http://localhost:3000/staff', {
-      method: 'POST',
+      method: 'PATCH',
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newStaff)
+      body: JSON.stringify(staff)
   })
   .then(r => r.json())
-  .then(data => setNewStaff((currentStaff) => [...currentStaff, data]))
-  .reset();
+  .then(data => setStaff((currentStaff) => [...currentStaff, data]))
+  addStaff(staff)
+  // .reset();
 }
+
+
+
 
 
 function handleStaffChange(e) {
   console.log(e.target)
-  setNewStaff((currentStaffState) => ({...currentStaffState, [e.target.name]:e.target.value }))
+  setStaff((currentStaffState) => ({...currentStaffState, [e.target.name]:e.target.value }))
 }
 
 
@@ -41,44 +46,44 @@ function handleStaffChange(e) {
         type="text"
         name="name"
         placeholder="Name here"
-        value={newStaff.name} 
+        value={staff.name} 
         onChange={handleStaffChange}/>
      <input 
         type="image"
         name="photo"
         placeholder="photo here"
-        value={newStaff.photo} 
+        value={staff.photo} 
         onChange={handleStaffChange}/>
       
     <input
         type="text"
         name="department"
         placeholder="Department/role here" 
-        value={newStaff.department}
+        value={staff.department}
         onChange={handleStaffChange}/>
     <input 
         type="text"
         name="phone"
         placeholder="Phone number here"
-        value={newStaff.phone} 
+        value={staff.phone} 
         onChange={handleStaffChange}/>
     <input 
         type="email"
         name="email"
         placeholder="E-mail here"
-        value={newStaff.email} 
+        value={staff.email} 
         onChange={handleStaffChange}/>
     <input 
         type="time"
         name="calltime"
         placeholder="Calltime here.." 
-        value={newStaff.calltime}
+        value={staff.calltime}
         onChange={handleStaffChange}/>
     <input
         type="text"
         name="notes"
         placeholder="Notes here.." 
-        value={newStaff.notes}
+        value={staff.notes}
         onChange={handleStaffChange}/>
    
     <input type="submit" value="Submit" />
