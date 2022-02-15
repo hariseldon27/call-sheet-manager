@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 function NewStaffForm() {
+    const history = useHistory();
 
     const [ newStaff, setNewStaff ] = useState({
         name: '',
@@ -11,7 +13,7 @@ function NewStaffForm() {
         calltime: '',
         notes: ''
       })
-      
+
       function handleStaffAddSubmit (e){
         e.preventDefault();
         fetch('http://localhost:3000/staff', {
@@ -23,8 +25,7 @@ function NewStaffForm() {
         })
         .then(r => r.json())
         .then(data => setNewStaff((currentStaff) => [...currentStaff, data]))
-        addStaff(newStaff)
-        // .reset();
+        .then(history.push('/staff'))
       }
       
       
@@ -33,8 +34,6 @@ function NewStaffForm() {
         setNewStaff((currentStaffState) => ({...currentStaffState, [e.target.name]:e.target.value }))
       }
       
-
-
 
   return (
     <div>
@@ -47,7 +46,7 @@ function NewStaffForm() {
         value={newStaff.name} 
         onChange={handleStaffAddChange}/>
      <input 
-        type="image"
+        type="text"
         name="photo"
         placeholder="photo here"
         value={newStaff.photo} 

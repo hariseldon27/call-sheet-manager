@@ -43,7 +43,6 @@ function handleEventChange(e){
      <input 
         type="date"
         name="date"
-        
          value={newEvent.date}
          onChange={handleEventChange}
          />         

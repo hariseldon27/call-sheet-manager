@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import StaffEditor from './StaffEditor'
 
 function StaffCard( ) {
 
-  const [ staffMember, setStaffMember ] = useState(null)
-  const { name, phone, email, department} = {...staffMember}
-  const [ staff, setStaff ] = useState({
-    name: '',
-    photo: '',
-    department: '',
-    phone: '',
-    email: '',
-    calltime: '',
-    notes: ''
-  })
+  const [ staffMemberRender, setStaffMemberRender ] = useState(null)
+  // console.log(staffMember)
+  const { name, phone, email, department, photo, notes} = {...staffMemberRender}
+ 
 
 
 
@@ -22,26 +15,26 @@ function StaffCard( ) {
   useEffect(() => {
       fetch(`http://localhost:3000/staff/${id}`)
       .then(r => r.json())
-      .then(setStaffMember)
+      .then(setStaffMemberRender)
   },[id])
 
-  function addStaff(staffPerson) {
-    console.log("in app" , staffPerson)
-    setStaff([...staff, staffPerson])
-  }
- 
+
 
 
   return (
     <div>
       StaffCard
       
-      <StaffEditor addStaff={addStaff} staff={staff} setStaff={setStaff}/>
+      <StaffEditor />
       <h2> {name}</h2>
       <p> {phone}</p>
+      <p>{photo}</p>
       <p> {email}</p>
-      <p> {department}</p>
-      <button>Edit Staff</button>
+      <p> {department}</p> 
+      <p>{notes}</p>
+      <Link to={`/staff/${id}/editor`}>
+        <button >Edit Staff</button>
+      </Link>
       </div>
   )
 }

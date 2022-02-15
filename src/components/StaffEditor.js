@@ -1,21 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 
-function StaffEditor({ addStaff, staff, setStaff }) {
 
-  // const [ staff, setStaff ] = useState({
-  //   name: '',
-  //   photo: '',
-  //   department: '',
-  //   phone: '',
-  //   email: '',
-  //   calltime: '',
-  //   notes: ''
-  // })
+function StaffEditor() {
+  const history = useHistory();
+
+  const [ staff, setStaff ] = useState({
+    name: '',
+    photo: '',
+    department: '',
+    phone: '',
+    email: '',
+    calltime: '',
+    notes: ''
+  })
+
+
+const {id} = useParams()
+  useEffect(() => {
+      fetch(`http://localhost:3000/staff/${id}`)
+      .then(r => r.json())
+      .then(setStaff)
+  },[id])
+
+  console.log(id)
 
 
 function handleStaffSubmit (e){
   e.preventDefault();
-  fetch('http://localhost:3000/staff', {
+  fetch(`http://localhost:3000/staff/${id}`, {
       method: 'PATCH',
       headers:{
         "Content-Type": "application/json"
@@ -23,20 +36,13 @@ function handleStaffSubmit (e){
       body: JSON.stringify(staff)
   })
   .then(r => r.json())
-  .then(data => setStaff((currentStaff) => [...currentStaff, data]))
-  addStaff(staff)
-  // .reset();
+  .then(history.push(`/staff`))
 }
-
-
-
-
 
 function handleStaffChange(e) {
   console.log(e.target)
   setStaff((currentStaffState) => ({...currentStaffState, [e.target.name]:e.target.value }))
 }
-
 
   return (
     <div>
@@ -49,7 +55,7 @@ function handleStaffChange(e) {
         value={staff.name} 
         onChange={handleStaffChange}/>
      <input 
-        type="image"
+        type="text"
         name="photo"
         placeholder="photo here"
         value={staff.photo} 
@@ -88,7 +94,7 @@ function handleStaffChange(e) {
    
     <input type="submit" value="Submit" />
 
-    </form>
+    </form> 
 
     </div>
   )

@@ -11,6 +11,8 @@ import EventsContainer from './components/EventsContainer';
 import CallSheetList from './components/CallSheetList';
 import StaffCard from './components/StaffCard';
 import EventsCard from './components/EventsCard';
+import StaffEditor from './components/StaffEditor';
+import NewStaffForm from './components/NewStaffForm';
 
 function App() {
   return (
@@ -19,6 +21,12 @@ function App() {
       <Switch>
         <Route exact path='/'> 
             <Home />
+        </Route>
+        <Route path='/staff/:id/editor'>
+          <StaffEditor />
+        </Route>
+        <Route path='/staff/newStaffForm'>
+          <NewStaffForm />
         </Route>
         <Route path='/staff/:id'>
               <StaffCard />

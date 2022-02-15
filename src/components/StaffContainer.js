@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import StaffCard from './StaffCard'
+import { Link } from 'react-router-dom'
 
 
 
 
 function StaffContainer() {
-  const [ staff, setStaff ] = useState()
+  
   const [staffList, setStaffList ] = useState([])
 
 useEffect(() => {
@@ -19,10 +20,10 @@ const staffCardRender = staffList.map((staffPerson) => {
 })
 
 
-function handleStaffClick () {
-  console.log('clicked')
+// function handleStaffClick () {
+//   console.log('clicked')
   
- }
+//  }
 
 //  function addStaff(staffPerson) {
 //    console.log("in app" , staffPerson)
@@ -31,10 +32,13 @@ function handleStaffClick () {
 
   return (
     <div>
-    StaffContainer
+      StaffContainer
+    <Link to='/staff/newStaffForm'>
+        <button>New Form Here</button>
+      </Link>
+    
          {staffCardRender}
-        
-        <button onClick={handleStaffClick}>New Form Here</button>
+  
     </div>
   )
 }
