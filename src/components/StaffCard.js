@@ -13,7 +13,7 @@ import { deepOrange } from '@mui/material/colors';
 
 
 
-function StaffCard( { id } ) {
+function StaffCard( {  } ) {
 
   const [ staffMember, setStaffMember ] = useState(null)
  
