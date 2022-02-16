@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react'
-import MapContainer from './MapContainer';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -77,7 +76,7 @@ console.log(id)
                 MAP
                 </Typography>
                 <Wrapper apiKey={"AIzaSyCUAtRjjf2JSZt5_UD3OEOYlD_O_hnXYZs"}>
-                  <MapContainer />
+                  {/* <MapContainer /> */}
                 </Wrapper>
 
 
