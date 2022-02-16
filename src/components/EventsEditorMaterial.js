@@ -97,7 +97,6 @@ function handleEventEditChange(e){
                 />
 
                 <TextField
-                label="Date..." 
                 variant="outlined" 
                 name="date"
                 type="date"
@@ -106,7 +105,6 @@ function handleEventEditChange(e){
                 />
 
                 <TextField
-                label="Time..." 
                 variant="outlined" 
                 type="time"
                 name="time"
