@@ -22,6 +22,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { sizing } from '@mui/system';
+import CallSheetBuilderMaterial from './components/CallSheetBuilderMaterial';
 
 const callSheetTheme = createTheme({
     palette: {
@@ -93,6 +94,9 @@ function AppMaterial() {
                     </Route>
                     <Route exact path="/events" >
                         <EventsContainerMaterial />
+                    </Route>
+                    <Route path="/callsheets/editor">
+                        <CallSheetBuilderMaterial />
                     </Route>
                     <Route path="/callsheets">
                         <CallSheetList /> 
