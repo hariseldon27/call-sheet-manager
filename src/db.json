@@ -49,6 +49,16 @@
       "calltime": "6am",
       "notes": "Jonny is weird, but helpful when it comes to solving stupid problems that a cat could probably figure out.",
       "id": 5
+    },
+    {
+      "name": "hello",
+      "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
+      "department": "things",
+      "phone": "666-666-6666",
+      "email": "me@net.net",
+      "calltime": "6am",
+      "notes": "things happen",
+      "id": 6
     }
   ],
   "events": [
@@ -81,6 +91,16 @@
       "time": "00:32",
       "notes": "it'll be so freakin rad that no one will know what's going on",
       "id": 3
+    },
+    {
+      "name": "Awesome event",
+      "date": "2022-09-12",
+      "duration": "2mins",
+      "location": "location of thing",
+      "directions": "",
+      "time": "09:02",
+      "notes": "notes of things happening",
+      "id": 4
     }
   ]
 }

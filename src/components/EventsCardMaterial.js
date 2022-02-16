@@ -10,7 +10,6 @@ import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import { deepOrange } from '@mui/material/colors';
 import { useParams} from 'react-router-dom'
 import { Link as RouterLink } from 'react-router-dom';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
@@ -53,13 +52,13 @@ console.log(id)
               <Typography gutterBottom variant="h5" component="div">
               {name}
               </Typography>
-              <Typography variant="body1" color="text.secondary">
+              <Typography variant="body2" color="text.secondary">
               <strong>Date:</strong> {date}
               </Typography>
-              <Typography variant="body1" color="text.secondary">
+              <Typography variant="body2" color="text.secondary">
                 <strong>Time:</strong> {duration}
               </Typography>
-              <Typography variant="body1" color="text.secondary">
+              <Typography variant="body2" color="text.secondary">
               <strong>Loc:</strong> {location}
               </Typography>
             </CardContent>
@@ -69,7 +68,7 @@ console.log(id)
                 backgroundColor: 'primary.light',
                 my: 1,
                 p: 1,
-                maxWidth: 400
+                width: 'md'
             }}>
                 <Typography variant="strong">MAP?</Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -85,7 +84,7 @@ console.log(id)
                 backgroundColor: 'primary.light',
                 my: 1,
                 p: 1,
-                maxWidth: 400
+                width: 'md'
             }}>
                 <Typography variant="strong">Notes:</Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -97,8 +96,8 @@ console.log(id)
                 alignContent: 'center',
             }}>
                 <CardActions >
-                <Button component={RouterLink} to={`/events/${id}/editor`} size="small"> <EditIcon /> </Button>
-                <Button size="small"> <DeleteIcon /> </Button>
+                  <Button component={RouterLink} to={`/events/${id}/editor`} size="small"> <EditIcon /> </Button>
+                  <Button size="small"> <DeleteIcon /> </Button>
                 </CardActions>
             </Box>
           </CardContent>

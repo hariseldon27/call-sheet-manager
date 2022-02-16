@@ -40,27 +40,28 @@ function StaffContainerMaterial() {
 
     function newStaffButton() {
         return (
-        <Box sx={{
-            p: 2,
-            backgroundColor: 'secondary.dark',
-            display: 'flex',
-            alignContent: 'center'
-        }}>
-            <Box sx={{
-            }}>
-              <Card sx={{ maxWidth: 150 }}>
-                <CardMedia
-                  component="img"
-                  image="https://st3.depositphotos.com/9998432/13335/v/600/depositphotos_133351964-stock-illustration-default-placeholder-woman.jpg"
-                  alt="staff headshot placeholder"
-                />
-                <CardActions>
-                    <Button size="large" color="secondary" component={RouterLink} to={`/staff/new`} size="small"> Click to Add New Staff<AddCircleIcon /> </Button>
-                </CardActions>
-              </Card>
-            </Box>
-          </Box>
-           
+            <Grid item >
+                <Box sx={{
+                    p: 2,
+                    backgroundColor: 'secondary.dark',
+                    display: 'flex',
+                    alignContent: 'center'
+                }}>
+                    <Box sx={{
+                    }}>
+                    <Card sx={{ maxWidth: 150 }}>
+                        <CardMedia
+                        component="img"
+                        image="https://st3.depositphotos.com/9998432/13335/v/600/depositphotos_133351964-stock-illustration-default-placeholder-woman.jpg"
+                        alt="staff headshot placeholder"
+                        />
+                        <CardActions>
+                            <Button size="large" color="secondary" component={RouterLink} to={`/staff/new`} size="small"> Click to Add New Staff<AddCircleIcon /> </Button>
+                        </CardActions>
+                    </Card>
+                    </Box>
+                </Box>
+           </Grid>
          ) }
 
   return (
@@ -76,9 +77,7 @@ function StaffContainerMaterial() {
             maxWidth="md"
             >
             <Grid container spacing={2}>
-                 <Grid item >
-                    {newStaffButton()}
-                </Grid>
+                {newStaffButton()}
                 {staffCardRender}
             </Grid>
         </Container>

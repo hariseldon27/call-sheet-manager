@@ -70,7 +70,7 @@ function handleEventEditChange(e){
             
            
 
-                <TextField id="outlined-basic"
+                <TextField
                 label="Name..." 
                 variant="outlined" 
                 name="name"
