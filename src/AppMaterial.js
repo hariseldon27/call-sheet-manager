@@ -7,13 +7,14 @@ import {
 import StaffContainerMaterial from './components/StaffContainerMaterial';
 import EventsContainerMaterial from './components/EventsContainerMaterial';
 import CallSheetList from './components/CallSheetList';
-import StaffCard from './components/StaffCard';
-import EventsCard from './components/EventsCard';
+import StaffCardMaterial from './components/StaffCardMaterial';
+import EventsCardMaterial from './components/EventsCardMaterial';
 import FooterNavMaterial from './components/FooterNavMaterial';
 import HeaderMaterial from './components/HeaderMaterial';
 import StaffEditorMaterial from './components/StaffEditorMaterial';
 import EventsEditorMaterial from './components/EventsEditorMaterial';
 import NewStaffFormMaterial from './components/NewStaffFormMaterial';
+import NewEventFormMaterial from './components/NewEventFormMaterial';
 import { createStyles, makeStyles, createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -76,7 +77,7 @@ function AppMaterial() {
                         <NewStaffFormMaterial />
                     </Route>
                     <Route exact path='/staff/:id'>
-                        <StaffCard />
+                        <StaffCardMaterial />
                     </Route>
                     <Route exact path="/staff">
                         <StaffContainerMaterial />
@@ -84,14 +85,20 @@ function AppMaterial() {
                     <Route path="/events/:id/editor"> 
                         <EventsEditorMaterial />
                     </Route>
+                    <Route exact path="/events/new">
+                        <NewEventFormMaterial />
+                    </Route>
                     <Route path="/events/:id">
-                        <EventsCard />
+                        <EventsCardMaterial />
                     </Route>
                     <Route exact path="/events" >
                         <EventsContainerMaterial />
                     </Route>
                     <Route path="/callsheets">
                         <CallSheetList /> 
+                    </Route>
+                    <Route path="*">
+                        <h1>404 not found</h1>
                     </Route>
                 </Switch>
                 <Box sx={{

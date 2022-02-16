@@ -22,7 +22,7 @@ function StaffEditorMaterial() {
 
 const {id} = useParams()
   useEffect(() => {
-      fetch(`http://localhost:3000/staff/${id}`)
+      fetch(`http://localhost:3006/staff/${id}`)
       .then(r => r.json())
       .then(setStaff)
   },[id])
@@ -32,7 +32,7 @@ const {id} = useParams()
 
 function handleStaffSubmit (e){
   e.preventDefault();
-  fetch(`http://localhost:3000/staff/${id}`, {
+  fetch(`http://localhost:3006/staff/${id}`, {
       method: 'PATCH',
       headers:{
         "Content-Type": "application/json"

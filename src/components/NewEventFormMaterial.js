@@ -18,7 +18,7 @@ function NewEventFormMaterial() {
 
  function handleEventSubmit(e) {
      e.preventDefault();
-    fetch( 'http://localhost:3000/events', {
+    fetch( 'http://localhost:3006/events', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"

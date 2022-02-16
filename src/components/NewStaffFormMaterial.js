@@ -20,7 +20,7 @@ function NewStaffFormMaterial() {
 
       function handleStaffAddSubmit (e){
         e.preventDefault();
-        fetch('http://localhost:3000/staff', {
+        fetch('http://localhost:3006/staff', {
             method: 'POST',
             headers:{
               "Content-Type": "application/json"

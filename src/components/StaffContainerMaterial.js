@@ -25,7 +25,7 @@ function StaffContainerMaterial() {
   
 
     useEffect(() => {
-    fetch('http://localhost:3000/staff')
+    fetch('http://localhost:3006/staff')
     .then(r => r.json())
     .then(setStaffList)
     }, [])

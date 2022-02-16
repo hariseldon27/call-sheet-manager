@@ -22,7 +22,7 @@ function EventListingCardMaterial( { event } ) {
 
 const { id, name, date, duration, location, directions, notes } = {...event}
 
-if (!event) return <Skeleton variant="rectangular" width={210} height={118} />
+console.log(event)
 
 const directionsCheck = directions ? <CheckCircleIcon /> : <DoNotDisturbTwoToneIcon />
 

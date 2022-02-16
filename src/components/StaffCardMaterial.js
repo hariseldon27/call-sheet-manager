@@ -25,7 +25,7 @@ function StaffCardMaterial( {  } ) {
 
   const {id} = useParams()
   useEffect(() => {
-      fetch(`http://localhost:3000/staff/${id}`)
+      fetch(`http://localhost:3006/staff/${id}`)
       .then(r => r.json())
       .then(setStaffMemberRender)
   },[id])

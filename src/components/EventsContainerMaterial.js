@@ -26,13 +26,13 @@ function EventsContainerMaterial() {
   
 
     useEffect(() => {
-    fetch('http://localhost:3000/events')
+    fetch('http://localhost:3006/events')
     .then(r => r.json())
     .then(setEventList)
     }, [])
 
     const eventCardRender = eventList.map((event) => {
-        return (
+        return (                
             <Grid item key={event.id} xs={12} sm={12} md={12}>
                 <EventListingCardMaterial key={event.id} event={event} />
             </Grid>
