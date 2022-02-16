@@ -2,7 +2,7 @@
   "staff": [
     {
       "id": 1,
-      "photo": "https://via.placeholder.com/200",
+      "photo": "https://kaseyivanphotography.com/wp-content/uploads/2020/02/01-14027-post/Colorful-New-Hope-Portraits-and-Actor-Headshots-Kasey-Ivan-Photography-19-scaled(pp_w768_h1151).jpg",
       "name": "Joe Handy",
       "department": "lighting/",
       "phone": "555-555-1212",
@@ -12,7 +12,7 @@
     },
     {
       "name": "Nancy Drew",
-      "photo": "https://via.placeholder.com/200",
+      "photo": "https://westcottu.com/wp-content/uploads/chloe_0322ph-1.jpg",
       "department": "Deviant",
       "phone": "1-222-333-4444",
       "email": "mystery@nancy.com",
@@ -22,7 +22,7 @@
     },
     {
       "name": "Sponge Bob",
-      "photo": "https://via.placeholder.com/200",
+      "photo": "https://img.grouponcdn.com/deal/fg8nwLSG8ZfVeKraxjzV8tXrjPM/fg-5472x3276/v1/c870x524.jpg",
       "department": "Catering",
       "phone": "1-222-333-4444",
       "email": "pineapple@home.com",
@@ -32,13 +32,23 @@
     },
     {
       "name": "Tom Cat",
-      "photo": "https://via.placeholder.com/200",
+      "photo": "https://images.squarespace-cdn.com/content/v1/5890f6f95016e1497f6d425e/1624472585177-GOCFMMG7R9UODTJM61O0/Great+Headshots+for+Men+Studio+B+headshots",
       "department": "Set manager",
       "phone": "1-222-333-4444",
       "email": "getjerry@home.com",
       "calltime": "14:00",
       "notes": "none",
       "id": 4
+    },
+    {
+      "name": "Jonny boy",
+      "photo": "https://salerheadshots.com/wp-content/uploads/2020/10/Saler-Headshots-Portfolio-16-683x1024.jpg",
+      "department": "Grip",
+      "phone": "666-696-09090",
+      "email": "jo@whycantinet.net",
+      "calltime": "6am",
+      "notes": "Jonny is weird, but helpful when it comes to solving stupid problems that a cat could probably figure out.",
+      "id": 5
     }
   ],
   "events": [

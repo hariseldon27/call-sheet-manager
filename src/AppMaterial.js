@@ -12,7 +12,8 @@ import EventsCard from './components/EventsCard';
 import FooterNavMaterial from './components/FooterNavMaterial';
 import HeaderMaterial from './components/HeaderMaterial';
 import StaffEditorMaterial from './components/StaffEditorMaterial';
-import EventsEditorMaterial from './components/EventsEditorMaterial'
+import EventsEditorMaterial from './components/EventsEditorMaterial';
+import NewStaffFormMaterial from './components/NewStaffFormMaterial';
 import { createStyles, makeStyles, createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -71,7 +72,10 @@ function AppMaterial() {
                     <Route path='/staff/:id/editor'>
           <             StaffEditorMaterial />
                     </Route>
-                    <Route path='/staff/:id'>
+                    <Route exact path="/staff/new">
+                        <NewStaffFormMaterial />
+                    </Route>
+                    <Route exact path='/staff/:id'>
                         <StaffCard />
                     </Route>
                     <Route exact path="/staff">

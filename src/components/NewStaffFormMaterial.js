@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function NewStaffFormMaterial() {
     const history = useHistory();
@@ -36,58 +40,91 @@ function NewStaffFormMaterial() {
       
 
   return (
-    <div>
-      <form onSubmit={handleStaffAddSubmit}>
-      <h2>Name:</h2>
-    <input 
-        type="text"
-        name="name"
-        placeholder="Name here"
-        value={newStaff.name} 
-        onChange={handleStaffAddChange}/>
-     <input 
-        type="text"
-        name="photo"
-        placeholder="photo here"
-        value={newStaff.photo} 
-        onChange={handleStaffAddChange}/>
-      
-    <input
-        type="text"
-        name="department"
-        placeholder="Department/role here" 
-        value={newStaff.department}
-        onChange={handleStaffAddChange}/>
-    <input 
-        type="text"
-        name="phone"
-        placeholder="Phone number here"
-        value={newStaff.phone} 
-        onChange={handleStaffAddChange}/>
-    <input 
-        type="email"
-        name="email"
-        placeholder="E-mail here"
-        value={newStaff.email} 
-        onChange={handleStaffAddChange}/>
-    <input 
-        type="time"
-        name="calltime"
-        placeholder="Calltime here.." 
-        value={newStaff.calltime}
-        onChange={handleStaffAddChange}/>
-    <input
-        type="text"
-        name="notes"
-        placeholder="Notes here.." 
-        value={newStaff.notes}
-        onChange={handleStaffAddChange}/>
-   
-    <input type="submit" value="Submit" />
+    <Box
+    component="form"
+    sx={{
+      '& .MuiTextField-root': { m: 2, width: '25ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    onSubmit={handleStaffAddSubmit}
+    >
+      <Box sx={{
+          maxWidth: 'md',
+          mx: 'auto',
+          alignContent: 'center',
+          mt: 2
+          
+      }}>
+          <Typography variant="h4" component="h2">New Staff Creator</Typography>
+            
+           
 
-    </form>
+                <TextField id="outlined-basic"
+                label="Name" 
+                variant="outlined" 
+                name="name"
+                value={newStaff.name} 
+                onChange={handleStaffAddChange}
+                />
 
-    </div>
+                <TextField
+                label="Photo Link" 
+                variant="outlined" 
+                name="photo"
+                value={newStaff.photo} 
+                onChange={handleStaffAddChange}
+                />
+                
+                <TextField
+                label="Department" 
+                variant="outlined" 
+                name="department"
+                value={newStaff.department} 
+                onChange={handleStaffAddChange}
+                />
+
+                <TextField
+                label="Phone Num" 
+                variant="outlined" 
+                name="phone"
+                value={newStaff.phone} 
+                onChange={handleStaffAddChange}
+                />
+
+
+                <TextField
+                label="Email" 
+                variant="outlined" 
+                name="email"
+                value={newStaff.email} 
+                onChange={handleStaffAddChange}
+                />
+
+                <TextField
+                label="time" 
+                variant="outlined" 
+                name="calltime"
+                value={newStaff.calltime} 
+                onChange={handleStaffAddChange}
+                />
+            
+                <TextField
+                label="Notes..." 
+                name="notes"
+                value={newStaff.notes} 
+                onChange={handleStaffAddChange}
+                variant="outlined" 
+                multiline
+                maxRows={4}
+                />
+                <Box>
+                    <Button size="large" color="secondary" type="submit" label="Submit" variant="outlined" >Submit</Button>
+                </Box>
+
+           
+        </Box>
+    </Box>
   )
 }
 
