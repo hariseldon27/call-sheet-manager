@@ -1,91 +1,139 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
-function StaffEditor() {
 
-const [ newStaff, setNewStaff ] = useState({
-  name: '',
-  photo: '',
-  department: '',
-  phone: '',
-  email: '',
-  calltime: '',
-  notes: ''
-})
+function StaffEditorMaterial() {
+  const history = useHistory();
+
+  const [ staff, setStaff ] = useState({
+    name: '',
+    photo: '',
+    department: '',
+    phone: '',
+    email: '',
+    calltime: '',
+    notes: ''
+  })
+
+
+const {id} = useParams()
+  useEffect(() => {
+      fetch(`http://localhost:3000/staff/${id}`)
+      .then(r => r.json())
+      .then(setStaff)
+  },[id])
+
+//   console.log(id)
+
 
 function handleStaffSubmit (e){
   e.preventDefault();
-  fetch('http://localhost:3000/staff', {
-      method: 'POST',
+  fetch(`http://localhost:3000/staff/${id}`, {
+      method: 'PATCH',
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newStaff)
+      body: JSON.stringify(staff)
   })
   .then(r => r.json())
-  .then(data => setNewStaff((currentStaff) => [...currentStaff, data]))
-  .reset();
+  .then(history.push(`/staff`))
 }
 
-
-function handleStaffChangeMaterial(e) {
-  console.log(e.target)
-  setNewStaff((currentStaffState) => ({...currentStaffState, [e.target.name]:e.target.value }))
+function handleStaffChange(e) {
+//   console.log(e.target)
+  setStaff((currentStaffState) => ({...currentStaffState, [e.target.name]:e.target.value }))
 }
-
 
   return (
-    <div>
-      <form onSubmit={handleStaffSubmit}>
-      <h2>Name:</h2>
-    <input 
-        type="text"
-        name="name"
-        placeholder="Name here"
-        value={newStaff.name} 
-        onChange={handleStaffChange}/>
-     <input 
-        type="Url"
-        name="photo"
-        placeholder="photo here"
-        value={newStaff.photo} 
-        onChange={handleStaffChange}/>
-      
-    <input
-        type="text"
-        name="department"
-        placeholder="Department/role here" 
-        value={newStaff.department}
-        onChange={handleStaffChange}/>
-    <input 
-        type="text"
-        name="phone"
-        placeholder="Phone number here"
-        value={newStaff.phone} 
-        onChange={handleStaffChange}/>
-    <input 
-        type="text"
-        name="email"
-        placeholder="E-mail here"
-        value={newStaff.email} 
-        onChange={handleStaffChange}/>
-    <input 
-        type="text"
-        name="calltime"
-        placeholder="Calltime here.." 
-        value={newStaff.calltime}
-        onChange={handleStaffChange}/>
-    <input
-        type="text"
-        name="notes"
-        placeholder="Notes here.." 
-        value={newStaff.notes}
-        onChange={handleStaffChange}/>
-   
-    <input type="submit" value="Submit" />
+    <Box
+    component="form"
+    sx={{
+      '& .MuiTextField-root': { m: 2, width: '25ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    onSubmit={handleStaffSubmit}
+    >
+      <Box sx={{
+          maxWidth: 'md',
+          mx: 'auto',
+          alignContent: 'center',
+          mt: 2
+          
+      }}>
+          <Typography variant="h4" component="h2">Staff Editor</Typography>
+            
+           
 
-    </form>
+                <TextField id="outlined-basic"
+                label="Name" 
+                variant="outlined" 
+                name="name"
+                value={staff.name} 
+                onChange={handleStaffChange}
+                />
 
-    </div>
+                <TextField
+                label="Photo Link" 
+                variant="outlined" 
+                name="photo"
+                value={staff.photo} 
+                onChange={handleStaffChange}
+                />
+                
+                <TextField
+                label="Department" 
+                variant="outlined" 
+                name="department"
+                value={staff.department} 
+                onChange={handleStaffChange}
+                />
+
+                <TextField
+                label="Phone Num" 
+                variant="outlined" 
+                name="phone"
+                value={staff.phone} 
+                onChange={handleStaffChange}
+                />
+
+
+                <TextField
+                label="Email" 
+                variant="outlined" 
+                name="email"
+                value={staff.email} 
+                onChange={handleStaffChange}
+                />
+
+                <TextField
+                label="time" 
+                variant="outlined" 
+                name="calltime"
+                value={staff.calltime} 
+                onChange={handleStaffChange}
+                />
+            
+                <TextField
+                label="Notes..." 
+                name="notes"
+                value={staff.notes} 
+                onChange={handleStaffChange}
+                variant="outlined" 
+                multiline
+                maxRows={4}
+                />
+                <Box>
+                    <Button size="large" color="secondary" type="submit" label="Submit" variant="outlined" >Submit</Button>
+                </Box>
+
+           
+        </Box>
+    </Box>
   )
 }
 

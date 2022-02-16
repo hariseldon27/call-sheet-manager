@@ -22,10 +22,6 @@ const { id, name, phone, email, department, photo, calltime, notes } = {...staff
 
 if (!staffPerson) return <h2>Loading...</h2>
 
-function handleEditClick(e) {
-    
-}
-
 return (
     <Box sx={{
       alignContent: 'center',
@@ -81,7 +77,7 @@ return (
                 alignContent: 'center',
             }}>
                 <CardActions >
-                <Button component={RouterLink} to={`/staff/${id}`} size="small" onClick={handleEditClick}> <EditIcon /> </Button>
+                <Button component={RouterLink} to={`/staff/${id}/editor`} size="small"> <EditIcon /> </Button>
                 <Button size="small"> <DeleteIcon /> </Button>
                 </CardActions>
             </Box>

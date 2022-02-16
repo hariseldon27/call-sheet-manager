@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Link as RouterLink, MemoryRouter } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
@@ -8,7 +8,12 @@ import FestivalIcon from '@mui/icons-material/Festival';
 import PersonIcon from '@mui/icons-material/Person';
 
 function FooterNavMaterial() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+
+  const { id } = useParams()
+  useEffect(() => {
+    setValue(id)
+  }, [id])
 
   return (
     
@@ -17,6 +22,7 @@ function FooterNavMaterial() {
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
+          console.log(value)
         }}
         sx={{mt: '20px'}}
       >

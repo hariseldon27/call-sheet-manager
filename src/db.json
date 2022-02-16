@@ -8,12 +8,12 @@
       "phone": "555-555-1212",
       "email": "hello@hello.net",
       "calltime": "15:03",
-      "notes": "joe is not handy ~~~"
+      "notes": "joe is not ugly"
     },
     {
       "name": "Nancy Drew",
       "photo": "https://via.placeholder.com/200",
-      "department": "Actress",
+      "department": "Deviant",
       "phone": "1-222-333-4444",
       "email": "mystery@nancy.com",
       "calltime": "3:30 pm",
@@ -22,7 +22,7 @@
     },
     {
       "name": "Sponge Bob",
-      "photo": "",
+      "photo": "https://via.placeholder.com/200",
       "department": "Catering",
       "phone": "1-222-333-4444",
       "email": "pineapple@home.com",
@@ -32,23 +32,13 @@
     },
     {
       "name": "Tom Cat",
-      "photo": "",
+      "photo": "https://via.placeholder.com/200",
       "department": "Set manager",
       "phone": "1-222-333-4444",
       "email": "getjerry@home.com",
       "calltime": "14:00",
       "notes": "none",
       "id": 4
-    },
-    {
-      "name": "",
-      "photo": "",
-      "department": "",
-      "phone": "",
-      "email": "",
-      "calltime": "",
-      "notes": "",
-      "id": 5
     }
   ],
   "events": [

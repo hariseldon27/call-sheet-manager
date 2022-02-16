@@ -26,7 +26,7 @@ function StaffContainerMaterial() {
 
     const staffCardRender = staffList.map((staffPerson) => {
     return (
-        <Grid item key={staffPerson} xs={6} sm={6} md={4}>
+        <Grid item key={staffPerson.id} xs={6} sm={6} md={4}>
             <StaffListingCard key={staffPerson.id} staffPerson={staffPerson} />
         </Grid>
 

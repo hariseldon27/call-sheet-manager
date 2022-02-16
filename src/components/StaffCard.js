@@ -30,7 +30,6 @@ function StaffCard( {  } ) {
       .then(setStaffMemberRender)
   },[id])
 
-  if (!staffMember) return <h2>Loading...</h2>
 
 
 

@@ -11,7 +11,7 @@ function HeaderMaterial() {
     <Box sx={{
         textAlign: 'center',
         p: 2,
-        backgroundColor: 'primary.light',
+        backgroundColor: 'secondary.main',
         color: '#fff',
         display: 'flex',
     }}>

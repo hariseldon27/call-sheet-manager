@@ -33,12 +33,17 @@ function HomeMaterial() {
         
         <Stack >
            <Box sx={{
-               display: 'grid'
+               display: 'grid',
+               width: 300,
+               mx: 'auto',
+               mb: 5,
            }}>
                 <ButtonGroup
                     orientation="vertical"
                     aria-label="vertical contained button group"
-                    variant="text"
+                    variant="contained"
+                    size="large"
+                    
                 >
                     {buttons}
                 </ButtonGroup>
