@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -12,24 +11,28 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import { deepOrange } from '@mui/material/colors';
-
+import { useParams, Link } from 'react-router-dom'
 
 
 function StaffCard( {  } ) {
 
-  const [ staffMember, setStaffMember ] = useState(null)
+  const [ staffMemberRender, setStaffMemberRender ] = useState(null)
+  // console.log(staffMember)
+  const { name, phone, email, department, photo, notes} = {...staffMemberRender}
  
-  const { name, phone, email, department, photo, calltime, notes } = {...staffMember}
 
- const {id} = useParams()
 
+
+  const {id} = useParams()
   useEffect(() => {
       fetch(`http://localhost:3000/staff/${id}`)
       .then(r => r.json())
-      .then(setStaffMember)
+      .then(setStaffMemberRender)
   },[id])
 
   if (!staffMember) return <h2>Loading...</h2>
+
+
 
 
 

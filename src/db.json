@@ -4,59 +4,61 @@
       "id": 1,
       "photo": "https://via.placeholder.com/200",
       "name": "Joe Handy",
-      "department": "lighting",
+      "department": "lighting/",
       "phone": "555-555-1212",
       "email": "hello@hello.net",
-      "calltime": "11:00 am",
-      "notes": "joe is handy"
+      "calltime": "15:03",
+      "notes": "joe is not handy ~~~"
     },
     {
       "name": "Nancy Drew",
       "photo": "https://via.placeholder.com/200",
       "department": "Actress",
       "phone": "1-222-333-4444",
-      "email": "mystery@nacny.com",
+      "email": "mystery@nancy.com",
       "calltime": "3:30 pm",
       "notes": "needs wardrobe ",
       "id": 2
     },
     {
-      "id": 3,
-      "photo": "https://via.placeholder.com/200",
-      "name": "Joe Handy",
-      "department": "lighting",
-      "phone": "555-555-1212",
-      "email": "hello@hello.net",
-      "calltime": "11:00 am",
-      "notes": "joe is handy"
+      "name": "Sponge Bob",
+      "photo": "",
+      "department": "Catering",
+      "phone": "1-222-333-4444",
+      "email": "pineapple@home.com",
+      "calltime": "14:00",
+      "notes": "needs water",
+      "id": 3
     },
     {
-      "name": "Nancy Drew",
-      "photo": "https://via.placeholder.com/200",
-      "department": "Actress",
+      "name": "Tom Cat",
+      "photo": "",
+      "department": "Set manager",
       "phone": "1-222-333-4444",
-      "email": "mystery@nacny.com",
-      "calltime": "3:30 pm",
-      "notes": "needs wardrobe ",
+      "email": "getjerry@home.com",
+      "calltime": "14:00",
+      "notes": "none",
       "id": 4
+    },
+    {
+      "name": "",
+      "photo": "",
+      "department": "",
+      "phone": "",
+      "email": "",
+      "calltime": "",
+      "notes": "",
+      "id": 5
     }
   ],
   "events": [
     {
       "id": 1,
-      "name": "pottery barn photo-op",
-      "date": "",
-      "duration": "",
-      "location": "",
-      "directions": ""
-    },
-    {
-      "name": "",
-      "date": "",
-      "duration": "",
-      "location": "",
-      "directions": "",
-      "id": 2
+      "name": "walmart photo-op",
+      "date": "2022-11-21",
+      "duration": "2:00 - 6:00",
+      "location": "SF",
+      "directions": "to some "
     }
   ]
 }
