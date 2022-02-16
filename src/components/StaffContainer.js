@@ -16,7 +16,8 @@ useEffect(() => {
 }, [])
 
 const staffCardRender = staffList.map((staffPerson) => {
-  return <StaffCard key={staffPerson.id} staffPerson={staffPerson} />
+  return <StaffCard 
+  key={staffPerson.id} staffPerson={staffPerson} />
 })
 
   return (

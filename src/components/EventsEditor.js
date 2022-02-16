@@ -19,10 +19,6 @@ const {id} = useParams()
       .then(setEventEdit)
   },[id])
 
-  console.log(id)
-
-
-  
 
 function handleEventEditSubmit(e) {
   e.preventDefault();
