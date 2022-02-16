@@ -5,7 +5,7 @@ import {
   Route 
   } from 'react-router-dom'
 import StaffContainerMaterial from './components/StaffContainerMaterial';
-import EventsContainer from './components/EventsContainer';
+import EventsContainerMaterial from './components/EventsContainerMaterial';
 import CallSheetList from './components/CallSheetList';
 import StaffCard from './components/StaffCard';
 import EventsCard from './components/EventsCard';
@@ -84,7 +84,7 @@ function AppMaterial() {
                         <EventsCard />
                     </Route>
                     <Route exact path="/events" >
-                        <EventsContainer />
+                        <EventsContainerMaterial />
                     </Route>
                     <Route path="/callsheets">
                         <CallSheetList /> 

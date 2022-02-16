@@ -48,7 +48,17 @@
       "date": "2022-11-21",
       "duration": "2:00 - 6:00",
       "location": "SF",
-      "directions": "to some "
+      "directions": "to some ",
+      "notes": "I like turtles"
+    },
+    {
+      "id": 2,
+      "name": "walmart photo-op",
+      "date": "2022-11-21",
+      "duration": "2:00 - 6:00",
+      "location": "SF",
+      "directions": "",
+      "notes": "such a beautiful city"
     }
   ]
 }
