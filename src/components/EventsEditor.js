@@ -22,6 +22,8 @@ const {id} = useParams()
   console.log(id)
 
 
+  
+
 function handleEventEditSubmit(e) {
   e.preventDefault();
   fetch( `http://localhost:3000/events/${id}`, {
