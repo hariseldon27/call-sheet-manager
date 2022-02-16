@@ -2,7 +2,7 @@
   "staff": [
     {
       "id": 1,
-      "photo": "placeholder",
+      "photo": "https://via.placeholder.com/200",
       "name": "Joe Handy",
       "department": "lighting",
       "phone": "555-555-1212",
@@ -12,13 +12,33 @@
     },
     {
       "name": "Nancy Drew",
-      "photo": "placeholder",
+      "photo": "https://via.placeholder.com/200",
       "department": "Actress",
       "phone": "1-222-333-4444",
       "email": "mystery@nacny.com",
       "calltime": "3:30 pm",
       "notes": "needs wardrobe ",
       "id": 2
+    },
+    {
+      "id": 3,
+      "photo": "https://via.placeholder.com/200",
+      "name": "Joe Handy",
+      "department": "lighting",
+      "phone": "555-555-1212",
+      "email": "hello@hello.net",
+      "calltime": "11:00 am",
+      "notes": "joe is handy"
+    },
+    {
+      "name": "Nancy Drew",
+      "photo": "https://via.placeholder.com/200",
+      "department": "Actress",
+      "phone": "1-222-333-4444",
+      "email": "mystery@nacny.com",
+      "calltime": "3:30 pm",
+      "notes": "needs wardrobe ",
+      "id": 4
     }
   ],
   "events": [

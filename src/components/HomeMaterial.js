@@ -28,60 +28,54 @@ function HomeMaterial() {
 
   return (
     <Box sx={{
-        alignContent: 'center',
-        display: 'grid',
-        textAlign: 'center',
-        m: 3,
-        p: 2,
-        backgroundColor: '#003c6c'
-
+        py: 6
     }}>
-        <Stack>
-            
-                <Typography variant="h3" component="h1">Call Sheet Manager <ManageAccountsIcon /></Typography>
-            
-           
+        
+        <Stack >
+           <Box sx={{
+               display: 'grid'
+           }}>
                 <ButtonGroup
-                orientation="vertical"
-                aria-label="vertical contained button group"
-                variant="text"
+                    orientation="vertical"
+                    aria-label="vertical contained button group"
+                    variant="text"
                 >
-                {buttons}
+                    {buttons}
                 </ButtonGroup>
-            
-            
-            <Box sx={{ 
-                flexGrow: 1,
-                backgroundColor: '#3378af',
-                width: 300,
-                alignContent: 'center',
-                display: 'grid',
-                mx: 'auto'
-                }}>
-                <List dense={true}>
-                    <Typography component="h2" variant="h4">Recent Call Sheets</Typography>
-                    <Divider />
-                    <ListItem>
-                    <ListItemIcon>
-                        <FolderIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Single-line item"/>
-                    </ListItem>
-                    <ListItem>
-                    <ListItemIcon>
-                        <FolderIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Instagram Product Shoot" secondary="15 Mar 2022"/>
-                    </ListItem>
-                    <ListItem component={RouterLink} to={'/callsheets'}>
-                    <ListItemIcon>
-                        <FolderIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Event: Awesome Photo Thing" secondary="Jan 20 2022"/>
-                    </ListItem>
-                
-                </List>
             </Box>
+            
+             <Paper sx={{width: 500, mx: 'auto'}}>
+                <Box sx={{ 
+                    flexGrow: 1,
+                    alignContent: 'center',
+                    display: 'grid',
+                    mx: 'auto'
+                    }}>
+                    <List>
+                        <Typography component="h2" variant="h4">Recent Call Sheets</Typography>
+                        <Divider />
+                        <ListItem>
+                        <ListItemIcon>
+                            <FolderIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Whitehouse Photo Op" secondary="22 Apr 2022"/>
+                        </ListItem>
+                        <ListItem>
+                        <ListItemIcon>
+                            <FolderIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Instagram Product Shoot" secondary="15 Mar 2022"/>
+                        </ListItem>
+                        <ListItem component={RouterLink} to={'/callsheets'}>
+                        <ListItemIcon>
+                            <FolderIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Event: Awesome Photo Thing" secondary="Jan 20 2022"/>
+                        </ListItem>
+                    
+                    </List>
+                </Box>
+            </Paper>
             
         </Stack>
     </Box>  )
