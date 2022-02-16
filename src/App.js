@@ -13,6 +13,8 @@ import StaffCard from './components/StaffCard';
 import EventsCard from './components/EventsCard';
 import StaffEditor from './components/StaffEditor';
 import NewStaffForm from './components/NewStaffForm';
+import NewEventForm from './components/NewEventForm';
+import EventsEditor from './components/EventsEditor';
 
 function App() {
   return (
@@ -28,11 +30,17 @@ function App() {
         <Route path='/staff/newStaffForm'>
           <NewStaffForm />
         </Route>
-        <Route path='/staff/:id'>
+        <Route path="/staff/:id">
               <StaffCard />
         </Route>
         <Route exact path="/staff">
               <StaffContainer />
+        </Route>
+        <Route path="/events/newEventForm">
+          <NewEventForm />
+        </Route>
+        <Route path="/events/:id/editor"> 
+          <EventsEditor />
         </Route>
         <Route path="/events/:id">
             <EventsCard />

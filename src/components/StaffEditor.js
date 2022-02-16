@@ -51,32 +51,32 @@ function handleStaffChange(e) {
     <input 
         type="text"
         name="name"
-        placeholder="Name here"
+        placeholder="Name here.."
         value={staff.name} 
         onChange={handleStaffChange}/>
      <input 
         type="text"
         name="photo"
-        placeholder="photo here"
+        placeholder="photo here.."
         value={staff.photo} 
         onChange={handleStaffChange}/>
       
     <input
         type="text"
         name="department"
-        placeholder="Department/role here" 
+        placeholder="Department/role here.." 
         value={staff.department}
         onChange={handleStaffChange}/>
     <input 
         type="text"
         name="phone"
-        placeholder="Phone number here"
+        placeholder="Phone number here.."
         value={staff.phone} 
         onChange={handleStaffChange}/>
     <input 
         type="email"
         name="email"
-        placeholder="E-mail here"
+        placeholder="E-mail here.."
         value={staff.email} 
         onChange={handleStaffChange}/>
     <input 

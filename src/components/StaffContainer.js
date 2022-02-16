@@ -19,17 +19,6 @@ const staffCardRender = staffList.map((staffPerson) => {
   return <StaffCard key={staffPerson.id} staffPerson={staffPerson} />
 })
 
-
-// function handleStaffClick () {
-//   console.log('clicked')
-  
-//  }
-
-//  function addStaff(staffPerson) {
-//    console.log("in app" , staffPerson)
-//    setStaff([...staff, staffPerson])
-//  }
-
   return (
     <div>
       StaffContainer

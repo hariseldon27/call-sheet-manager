@@ -54,19 +54,11 @@
   "events": [
     {
       "id": 1,
-      "name": "pottery barn photo-op",
-      "date": "",
-      "duration": "",
-      "location": "",
-      "directions": ""
-    },
-    {
-      "name": "",
-      "date": "",
-      "duration": "",
-      "location": "",
-      "directions": "",
-      "id": 2
+      "name": "walmart photo-op",
+      "date": "2022-11-21",
+      "duration": "2:00 - 6:00",
+      "location": "SF",
+      "directions": "to some "
     }
   ]
 }

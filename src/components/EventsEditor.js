@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router-dom';
 
 function EventsEditor() {
+  const history = useHistory();
 
-const [ newEvent, setNewEvent ] = useState({
+const [ eventEdit , setEventEdit ] = useState({
 name: '',
 date: '',
 duration: '',
@@ -10,61 +12,70 @@ location: '',
 directions: ''
 })
 
-function handleEventSubmit(e) {
+const {id} = useParams()
+  useEffect(() => {
+      fetch(`http://localhost:3000/events/${id}`)
+      .then(r => r.json())
+      .then(setEventEdit)
+  },[id])
+
+  console.log(id)
+
+
+function handleEventEditSubmit(e) {
   e.preventDefault();
-  fetch( 'http://localhost:3000/events', {
-      method: 'POST',
+  fetch( `http://localhost:3000/events/${id}`, {
+      method: 'PATCH',
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(newEvent)
+      body: JSON.stringify(eventEdit)
   })
     .then(r => r.json())
-    .then(data => setNewEvent((currentEvent) => [...currentEvent, data]))
-    .reset();
+    .then(history.push(`/events`))
 }
 
-function handleEventChange(e){
-  setNewEvent((newEvent) => ({...newEvent, [e.target.name]: e.target.value}))
+function handleEventEditChange(e){
+  setEventEdit((newEvent) => ({...newEvent, [e.target.name]: e.target.value}))
 } 
 
 
 
   return (
     <div>EventsEditor
-      <form onSubmit={handleEventSubmit}>
+      <form onSubmit={handleEventEditSubmit}>
     <input 
         type="text"
         name="name"
          placeholder="Event name here.."
-         value={newEvent.name}
-         onChange={handleEventChange}
+         value={eventEdit.name}
+         onChange={handleEventEditChange}
          />      
      <input 
         type="date"
         name="date"
-         value={newEvent.date}
-         onChange={handleEventChange}
+         value={eventEdit.date}
+         onChange={handleEventEditChange}
          />         
     <input 
       type="text"
       name="duration"
       placeholder="Duration here.."
-      value={newEvent.duration}
-      onChange={handleEventChange}/>
+      value={eventEdit.duration}
+      onChange={handleEventEditChange}/>
     <input 
       type="text"
       name="location"
       placeholder="Location here.."
-      value={newEvent.location}
-      onChange={handleEventChange}/>
+      value={eventEdit.location}
+      onChange={handleEventEditChange}/>
       
     <input 
        type="text"
        name="directions"
        placeholder="Directions here.."
-       value={newEvent.directions}
-       onChange={handleEventChange}/> 
+       value={eventEdit.directions}
+       onChange={handleEventEditChange}/> 
 
     <input type="submit" value="submit" />
     </form>
