@@ -2,11 +2,10 @@
 import './App.css';
 import Home from './components/Home';
 import { 
-
   Switch, 
   Route 
   } from 'react-router-dom'
-import StaffContainer from './components/StaffContainer';
+import StaffContainerMaterial from './components/StaffContainerMaterial';
 import EventsContainer from './components/EventsContainer';
 import CallSheetList from './components/CallSheetList';
 import StaffCard from './components/StaffCard';
@@ -34,7 +33,7 @@ function App() {
               <StaffCard />
         </Route>
         <Route exact path="/staff">
-              <StaffContainer />
+              <StaffContainerMaterial />
         </Route>
         <Route path="/events/newEventForm">
           <NewEventForm />

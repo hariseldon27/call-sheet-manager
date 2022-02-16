@@ -14,7 +14,7 @@ import { deepOrange } from '@mui/material/colors';
 import { useParams, Link } from 'react-router-dom'
 
 
-function StaffCard( {  } ) {
+function StaffCardMaterial( {  } ) {
 
   const [ staffMemberRender, setStaffMemberRender ] = useState(null)
   // console.log(staffMember)
@@ -25,7 +25,7 @@ function StaffCard( {  } ) {
 
   const {id} = useParams()
   useEffect(() => {
-      fetch(`http://localhost:3000/staff/${id}`)
+      fetch(`http://localhost:3006/staff/${id}`)
       .then(r => r.json())
       .then(setStaffMemberRender)
   },[id])
@@ -89,4 +89,4 @@ function StaffCard( {  } ) {
   )
 }
 
-export default StaffCard
+export default StaffCardMaterial
