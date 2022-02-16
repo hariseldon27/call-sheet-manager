@@ -39,7 +39,7 @@ return (
         flexGrow: 1,
         alignContent: 'center',
         display: 'grid',
-        mx: 'auto'
+        mx: 'auto',
         
       }}>
         <Card sx={{ display: 'flex' }}>
@@ -52,32 +52,31 @@ return (
               <strong>Date:</strong> {date}
               </Typography>
               <Typography variant="body1" color="text.secondary">
-              <strong>Loc:</strong> {location}
+                <strong>Time:</strong> {duration}
               </Typography>
               <Typography variant="body1" color="text.secondary">
-                Directions: {directionsCheck}
+              <strong>Loc:</strong> {location}
               </Typography>
             </CardContent>
           </Box>
           <CardContent sx={{ flex: '1 0 auto'}}>
-            <Typography variant="body1" color="text.secondary">
-            {}
-            </Typography>
             <Box sx={{
                 backgroundColor: 'primary.light',
                 my: 1,
-                py: 1,
+                p: 1,
+                maxWidth: 400
             }}>
                 <Typography variant="strong">Notes:</Typography>
                 <Typography variant="body2" color="text.secondary">
                 {notes}
                 </Typography>
             </Box>
+            
             <Box sx={{
                 alignContent: 'center',
             }}>
                 <CardActions >
-                <Button component={RouterLink} to={`/event/${id}/editor`} size="small"> <EditIcon /> </Button>
+                <Button component={RouterLink} to={`/events/${id}/editor`} size="small"> <EditIcon /> </Button>
                 <Button size="small"> <DeleteIcon /> </Button>
                 </CardActions>
             </Box>

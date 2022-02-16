@@ -49,7 +49,8 @@
       "duration": "2:00 - 6:00",
       "location": "SF",
       "directions": "to some ",
-      "notes": "I like turtles"
+      "notes": "I like turtles, but then again it is turtles all the way down!",
+      "time": "15:03"
     },
     {
       "id": 2,
@@ -58,7 +59,8 @@
       "duration": "2:00 - 6:00",
       "location": "SF",
       "directions": "",
-      "notes": "such a beautiful city"
+      "notes": "how many dogs does it take to burn down a barn?  Just look at that wig and you'll see why!",
+      "time": "21:23"
     }
   ]
 }

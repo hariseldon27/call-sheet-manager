@@ -41,13 +41,14 @@ function EventsContainerMaterial() {
     <Container>
     <CssBaseline />
         <Container sx={{ 
-            py: 4,
+            py: 2,
             mx: 'auto',
             alignContent : 'center',
             display: 'grid',
-            }} 
+        }} 
             maxWidth="md"
             >
+        <Typography variant='h4' component='h2'>Events</Typography>
             <Stack spacing={2}>
                 {eventCardRender}
             </Stack>
