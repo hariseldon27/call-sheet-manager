@@ -24,6 +24,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Avatar from '@mui/material/Avatar';
+
 
 
 
@@ -96,14 +99,16 @@ function CallSheetBuilderMaterial() {
     function renderRow(staffId, arryToUse) {
         const correctedId = 1 + parseInt(staffId, 10)
         const rows = arryToUse.filter((row) => row.id === correctedId)
-            return rows.map((entry, index) => <tr key={index}>{renderCells(entry, staffId)}</tr>)
+            return rows.map((entry, index) => <TableRow key={index}>{renderCells(entry, staffId)}</TableRow>)
     }
 
     function renderCells(rowObject, staffId) {
         const entries = Object.values(rowObject)
-        return entries.map((cells) => (
-            cellChecker(cells, staffId)
-            ))
+        
+
+        // return entries.map((cells) => (
+        //     cellChecker(cells, staffId)
+        //     ))
         }
 //fenceposts - divert our rowobject above and have it build fixed table rows
 
@@ -152,7 +157,14 @@ function CallSheetBuilderMaterial() {
             )
         })
 
-       
+        function createData(name, phone, department, email, calltime, notes ) {
+            return { name, phone, department, email, calltime, notes  };
+          }
+
+        const rows = [
+            createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+          ];
+          
   
 
     return (
@@ -195,7 +207,46 @@ function CallSheetBuilderMaterial() {
                     {/* {renderCallSheetStaff} */}
 
                     <TableContainer>
-                        
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell align="right">Department</TableCell>
+                                <TableCell align="right">Phone</TableCell>
+                                <TableCell align="right">Email</TableCell>
+                                <TableCell align="right">calltime</TableCell>
+                                <TableCell align="right">notes</TableCell>
+                                <TableCell align="right">pic</TableCell>
+                            </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {rows.map((row) => (
+                                <TableRow
+                                key={row.name}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                <TableCell component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="right">{row.calories}</TableCell>
+                                <TableCell align="right">{row.fat}</TableCell>
+                                <TableCell align="right">{row.carbs}</TableCell>
+                                <TableCell>
+
+                                </TableCell>
+                                <TableCell align="right">
+                                    <Avatar
+                                        alt="Remy Sharp"
+                                        src="https://i.pinimg.com/originals/a9/e5/06/a9e506364ae6b6892e6a126a2f021206.gif"
+                                        sx={{ width: 50, height: 50 }}
+                                    />
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                            </TableBody>
+                        </Table>
+                        </TableContainer>
                     </TableContainer>
 
 
