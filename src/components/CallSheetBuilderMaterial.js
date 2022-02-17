@@ -26,7 +26,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
-
+import IconButton from '@mui/material/IconButton';
 
 
 
@@ -76,6 +76,7 @@ function CallSheetBuilderMaterial() {
     function handleStaffRemove(e) {
         e.preventDefault()
         const staffToGo = e.target.id
+        console.log(e)
         console.log(staffToGo)
         const updatedItems = staffToAdd.filter(item => item !== staffToGo);
         setStaffToAdd(updatedItems)
@@ -92,8 +93,8 @@ function CallSheetBuilderMaterial() {
         .then((cards) => setStaffCallSheetCards([...staffCallSheetCards, cards]))
     }
     
-    // console.log(staffCallSheetCards)
-    console.log(formData)
+    console.log(staffCallSheetCards)
+    // console.log(formData)
 
 //these are the table builder functions
     function renderRow(staffId, arryToUse) {
@@ -103,14 +104,24 @@ function CallSheetBuilderMaterial() {
     }
 
     function renderCells(rowObject, staffId) {
-        const entries = Object.values(rowObject)
-        
-
+        // const entries = Object.entries(rowObject)
+        const { name, photo, department, phone, email, calltime, notes, id } = rowObject
+        return (
+            <>
+            <TableCell>{name}</TableCell>
+            <TableCell>{email}</TableCell>
+            <TableCell>{phone}</TableCell>
+            <TableCell>{email}</TableCell>
+            </>
+        )
         // return entries.map((cells) => (
         //     cellChecker(cells, staffId)
         //     ))
         }
 //fenceposts - divert our rowobject above and have it build fixed table rows
+
+
+
 
         function cellChecker(cellData, staffId) {
             if (
@@ -138,32 +149,29 @@ function CallSheetBuilderMaterial() {
                     }}
                     key={uuid()}>
                             <Button 
-                                key={staffId} 
-                                variant="oulined" 
+                                key={uuid()} 
+                                variant="filled" 
                                 color="primary.main" 
                                 size="large" 
                                 id={staffId}
                                 onClick={handleStaffRemove}
-                                ><DeleteIcon />
+                                >Remove
                                 </Button>
                         <Table>
-                            <TableRow>
-                            
                             {renderRow(staffId, staffCallSheetCards)}
-                            </TableRow>
                         </Table>
                     </Box>
             </TableContainer>
             )
         })
 
-        function createData(name, phone, department, email, calltime, notes ) {
-            return { name, phone, department, email, calltime, notes  };
-          }
+        // function createData(name, phone, department, email, calltime, notes ) {
+        //     return { name, phone, department, email, calltime, notes  };
+        //   }
 
-        const rows = [
-            createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-          ];
+        // const rows = [
+        //     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+        //   ];
           
   
 
@@ -204,9 +212,9 @@ function CallSheetBuilderMaterial() {
             </Box>
             <Box>
                 <Box>
-                    {/* {renderCallSheetStaff} */}
+                    {renderCallSheetStaff}
 
-                    <TableContainer>
+                    {/* <TableContainer>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
@@ -247,7 +255,7 @@ function CallSheetBuilderMaterial() {
                             </TableBody>
                         </Table>
                         </TableContainer>
-                    </TableContainer>
+                    </TableContainer> */}
 
 
                 </Box>                
