@@ -16,9 +16,10 @@ function HeaderMaterial() {
         display: 'flex',
     }}>
         <Typography variant="h4" component="h1" >Call Sheet Manager <ManageAccountsIcon /></Typography>
-
+      
     </Box>
-  )
+    
+)
 }
 
 export default HeaderMaterial

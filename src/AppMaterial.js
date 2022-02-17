@@ -24,6 +24,8 @@ import Paper from '@mui/material/Paper';
 import { sizing } from '@mui/system';
 import CallSheetBuilderMaterial from './components/CallSheetBuilderMaterial';
 
+// console.log(process.env.REACT_APP_GEOCODE_API_KEY)
+
 const callSheetTheme = createTheme({
     palette: {
         mode: 'dark',
@@ -44,7 +46,6 @@ const callSheetTheme = createTheme({
         },
       },
       })
-  
 
 
 function AppMaterial() {

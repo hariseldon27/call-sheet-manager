@@ -17,6 +17,7 @@ import Stack from '@mui/material/Stack';
 import { pink } from '@mui/material/colors' 
 
 
+
 function HomeMaterial() {
 
     const buttons = [
@@ -80,10 +81,13 @@ function HomeMaterial() {
                     
                     </List>
                 </Box>
-            </Paper>
-            
+            </Paper>     
+               
         </Stack>
-    </Box>  )
+    </Box>  
+    
+    
+    )
 }
 
 export default HomeMaterial
