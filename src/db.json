@@ -72,5 +72,29 @@
       "notes": "I like turtles, but then again it is turtles all the way down!",
       "time": "15:03"
     }
+  ],
+  "callsheets": [
+    {
+      "id": 1,
+      "staffers": [{
+        "id": 1,
+        "name": ""
+      }],
+      "callSheetName": "",
+      "callSheetStaffIds": [],
+      "callSheetEventId": "",
+      "notes": "I like turtles, but then again it is turtles all the way down!"
+    },
+    {
+      "id": 1,
+      "staffers": [{
+        "id": 1,
+        "name": ""
+      }],
+      "callSheetName": "",
+      "callSheetStaffIds": [],
+      "callSheetEventId": "",
+      "notes": "I like turtles, but then again it is turtles all the way down!"
+    }
   ]
 }
