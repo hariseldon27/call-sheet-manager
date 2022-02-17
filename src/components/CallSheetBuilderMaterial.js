@@ -28,6 +28,10 @@ import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 
@@ -44,6 +48,7 @@ function CallSheetBuilderMaterial() {
     const [eventToAdd, setEventToAdd] = useState([])
     const [staffCallSheetCards, setStaffCallSheetCards] = useState([])
     const [eventCallSheetCards, setEventCallSheetCards] = useState([])
+    const [eventInEditor, setEventInEditor] = useState([])
     const [callSheetInEditor, setCallSheetInEditor] = useState()
     const [formData, setFormData] = useState({
         name: '',
@@ -75,12 +80,13 @@ function CallSheetBuilderMaterial() {
     }
     function handleEventClick(e) {
         e.preventDefault()
-        if (eventToAdd.find(ele => ele === e.target.id) ) {
+        console.log("handlEventClick thinks e target value is " + e.target.value)
+        if (eventToAdd.find(ele => ele === e.target.value) ) {
             return null
         } else {
-            setEventToAdd([...eventToAdd, e.target.id])
+            setEventToAdd([e.target.value])
         }
-        eventCardGetter(e.target.id)
+        eventCardGetter(e.target.value)
     }
 
     function handleEditChange(e){
@@ -90,8 +96,7 @@ function CallSheetBuilderMaterial() {
     function handleStaffRemove(e) {
         e.preventDefault()
         const staffToGo = e.target.id
-        console.log(e)
-        console.log(staffToGo)
+        // console.log(staffToGo)
         const updatedItems = staffToAdd.filter(item => item !== staffToGo);
         setStaffToAdd(updatedItems)
         const correctedId = 1 + parseInt(staffToGo, 10)
@@ -100,13 +105,14 @@ function CallSheetBuilderMaterial() {
         }
     function handleEventRemove(e) {
         e.preventDefault()
-        const eventToGo = e.target.id
-        const updatedItems = eventToAdd.filter(item => item !== eventToGo);
-        setEventToAdd(updatedItems)
+        const eventToGo = e.target.value
         const correctedId = 1 + parseInt(eventToGo, 10)
-        const updatedEventCards = eventCallSheetCards.filter(item => item.id !== ( correctedId ))
+        const updatedItems = eventToAdd.filter(item => item !== correctedId);
+        setEventToAdd(updatedItems)
+        const updatedEventCards = eventCallSheetCards.filter(item => item.id !== ( eventToGo ))
         setEventCallSheetCards(updatedEventCards)
         }
+        console.log("eventcallsheetcards are:" + eventCallSheetCards)
       
     function staffCardGetter(staffId) {
         const cardId = 1 + parseInt(staffId, 10)
@@ -117,13 +123,22 @@ function CallSheetBuilderMaterial() {
     }
     function eventCardGetter(eventId) {
         const cardId = 1 + parseInt(eventId, 10)
-        // console.log(cardId)
+        console.log("eventCardGetter says eventId is: " + cardId)
         fetch(`http://localhost:3006/events/${cardId}`)
         .then((r)=> r.json())
-        .then((cards) => setEventCallSheetCards([...eventCallSheetCards, cards]))
+        .then((cards) => setEventCallSheetCards((cards) => cards))
     }
+
+    // const selectVals = () => {
+    //     if (eventCallSheetCards.length <= 0) {
+    //         return 1
+    //     }
+    //     else {
+    //         return eventCallSheetCards
+    //     }
+    // }
     
-    console.log(staffCallSheetCards)
+    console.log("staffCallSheetCards are: " + staffCallSheetCards)
     // console.log(formData)
 
 //these are the table builder functions
@@ -152,22 +167,22 @@ function CallSheetBuilderMaterial() {
 
 
 
+// fenceposts - this cellCheckerfunction isn't needed currently because we are using set rows
+        // function cellChecker(cellData, staffId) {
+        //     if (
+        //         typeof cellData === 'object' &&
+        //         !Array.isArray(cellData) &&
+        //         cellData !== null 
+        //     ) {
+        //         const cellObject = Object.values(cellData)
+        //         return cellObject.map((obj) => <TableRow key={obj.id}>{cellChecker(obj)}</TableRow>)
+        //     } else {
+        //         return <TableCell key={cellData.id}>{cellData}</TableCell>
+        //     }
+        // }
 
-        function cellChecker(cellData, staffId) {
-            if (
-                typeof cellData === 'object' &&
-                !Array.isArray(cellData) &&
-                cellData !== null 
-            ) {
-                const cellObject = Object.values(cellData)
-                return cellObject.map((obj) => <TableRow key={obj.id}>{cellChecker(obj)}</TableRow>)
-            } else {
-                return <TableCell key={cellData.id}>{cellData}</TableCell>
-            }
-        }
 
-
-        
+        //render our call sheet staff buttons
     const renderCallSheetStaff = staffToAdd.map((staffId) => {
         return (
             <TableContainer>
@@ -187,6 +202,7 @@ function CallSheetBuilderMaterial() {
                                 onClick={handleStaffRemove}
                                 >Remove
                                 </Button>
+                                
                         <Table>
                             {renderRow(staffId, staffCallSheetCards)}
                         </Table>
@@ -194,9 +210,10 @@ function CallSheetBuilderMaterial() {
             </TableContainer>
             )
         })
+        //render our call sheet event info
     const renderCallSheetEvent = eventToAdd.map((staffId) => {
         return (
-            <TableContainer>
+            <TableContainer key={uuid()}>
                     <Box 
                     sx={{
                         backgroundColor: 'primary.light',
@@ -249,10 +266,11 @@ function CallSheetBuilderMaterial() {
                             m: 1,
                             width: 'md'
                             }} 
+                            spacing={2}
                             >
                                 {/* left side this holds the staff buttons to add to the sheet */}
                                 {staffers.map((staff, id) => (
-                                    <Grid item spacing={2}>
+                                    <Grid item key={uuid()}>
                                         <Button 
                                         key={id} 
                                         variant="outlined" 
@@ -274,25 +292,31 @@ function CallSheetBuilderMaterial() {
                             }} 
                             >
                                 {/* right sidehave this hold the event list */}
-                                {eachEvent.map((event, id) => (
                                     <Grid item>
-                                        <Button 
-                                        key={id} 
-                                        variant="contained" 
-                                        color="primary" 
-                                        size="large" 
-                                        id={id}
-                                        onClick={handleEventClick}
-                                        >{event.name}</Button>
+                                        <InputLabel id="event-selector-label">Choose your event</InputLabel>
+                                            <Select
+                                                labelId="event-selector-label"
+                                                id="event-selector"
+                                                label="event-selector"
+                                                onChange={handleEventClick}
+                                                value={eventInEditor}
+                                                >
+                                                    <MenuItem value=""><em>Choose Event...</em></MenuItem>
+                                            {eachEvent.map((selection) => (
+                                                
+                                                <MenuItem key={selection.id} value={selection.id}>{selection.name}</MenuItem>
+                                                ))}
+                                            </Select>
                                     </Grid>
-                                ))}
+
+
                 </Container>
 
             {/* close the top container */}
             </Box>
             <Box>
                 <Box>
-                {renderCallSheetEvent}
+                    {renderCallSheetEvent}
                 </Box>
                 <Box>
                     {renderCallSheetStaff}
