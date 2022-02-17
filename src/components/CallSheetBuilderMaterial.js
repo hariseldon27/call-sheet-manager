@@ -55,7 +55,7 @@ function CallSheetBuilderMaterial() {
         notes: '',
         })
 
-        console.log(eventInEditor)
+        console.log("event in editor is: " + eventInEditor)
             //staff fetch
             useEffect(()=> {
                 fetch('http://localhost:3006/staff')
@@ -143,17 +143,9 @@ function CallSheetBuilderMaterial() {
         .then((card) => setEventCallSheetCards([card]))
     }
 
-    // const selectVals = () => {
-    //     if (eventCallSheetCards.length <= 0) {
-    //         return 1
-    //     }
-    //     else {
-    //         return eventCallSheetCards
-    //     }
-    // }
-    
-    // console.log("staffCallSheetCards are: " + staffCallSheetCards)
-    // console.log(formData)
+    function handleAddText(e) {
+
+    }
 
 //these are the table builder functions
     function renderRow(staffId, arryToUse) {
@@ -202,43 +194,37 @@ function CallSheetBuilderMaterial() {
         // }
 
 
+
         //render our call sheet staff buttons
+
     const renderCallSheetStaff = staffToAdd.map((staffId) => {
         return (
-            <TableContainer>
-                    <Box 
-                    sx={{
-                        backgroundColor: 'primary.light',
-                        color: 'black',
-                        display: 'flex'
-                    }}
-                    key={uuid()}>
-                            <Button 
-                                key={uuid()} 
-                                variant="filled" 
-                                color="primary.main" 
-                                size="large" 
-                                id={staffId}
-                                onClick={handleStaffRemove}
-                                >Remove
-                                </Button>
-                                
-                        <Table>
-                        
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Name</TableCell>
-                                    <TableCell>Email</TableCell>
-                                    <TableCell>Phone</TableCell>
-                                    <TableCell>Department</TableCell>
-                                    <TableCell>Notes</TableCell>
-                                </TableRow>
-                            </TableHead>
+            
+                    // <Box 
+                    // sx={{
+                    //     backgroundColor: 'primary.light',
+                    //     color: 'black',
+                    //     display: 'flex'
+                    // }}
+                    // key={uuid()}>
+                    <>
+                        <Button 
+                        key={uuid()} 
+                        variant="filled" 
+                        color="primary.main" 
+                        size="large" 
+                        id={staffId}
+                        onClick={handleStaffRemove}
+                        position="absolute"
+
+                        >X
+                        </Button>                                
                         
                             {renderRow(staffId, staffCallSheetCards)}
-                        </Table>
-                    </Box>
-            </TableContainer>
+                        
+                        </>
+                    // </Box>
+            
             )
         })
         //render our call sheet event info
@@ -302,6 +288,8 @@ function CallSheetBuilderMaterial() {
                             }} 
                             spacing={2}
                             >
+                            <Typography variant="h4">Choose Staffers</Typography>
+
                                 {/* left side this holds the staff buttons to add to the sheet */}
                                 {staffers.map((staff, id) => (
                                     <Grid item key={uuid()}>
@@ -325,9 +313,10 @@ function CallSheetBuilderMaterial() {
                             width: 'md'
                             }} 
                             >
+                                <Typography variant="h4">Choose Event</Typography>
                                 {/* right sidehave this hold the event list */}
                                     <Grid item>
-                                        <InputLabel id="event-selector-label">Choose your event</InputLabel>
+                                        <InputLabel id="event-selector-label">Choose Event</InputLabel>
                                             <Select
                                                 placeholder="Choose"
                                                 labelId="event-selector-label"
@@ -378,12 +367,29 @@ function CallSheetBuilderMaterial() {
                         height: 'auto',
                         width: '100%',
                     }}>
-                        {renderCallSheetStaff}
-                        </Box>
+                        <TableContainer>
+                        <Table>
+                        
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Email</TableCell>
+                                    <TableCell>Phone</TableCell>
+                                    <TableCell>Department</TableCell>
+                                    <TableCell>Notes</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            {renderCallSheetStaff}
+                        </Table>
+                        </TableContainer>
+                    </Box>
                 </Box>                
                     <Box sx={{
                         width: '100%',
-                        backgroundColor: 'secondary'
+                        backgroundColor: 'secondary',
+                        p: 2,
+                        py: 5,
+                        display: 'grid',
                     }}>
                         <TextField
                             label="Call Sheet Name" 
@@ -400,7 +406,21 @@ function CallSheetBuilderMaterial() {
                             value={formData.notes} 
                             onChange={handleEditChange}
                             />
+                        <Button 
+                                key={uuid()} 
+                                id="addText"
+                                variant="outlined" 
+                                color="secondary" 
+                                size="large" 
+                                onClick={handleAddText}
+                                minheight='100%'
+                                > CREATE PDF
+                        </Button>
                     </Box>
+                <Box>
+                <Typography variant="body2">{formData.name}</Typography>
+                <Typography variant="body2">{formData.notes}</Typography>
+                </Box>    
             </Box>
         </Box>
         
