@@ -55,6 +55,7 @@ function CallSheetBuilderMaterial() {
         notes: '',
         })
 
+        console.log(eventInEditor)
             //staff fetch
             useEffect(()=> {
                 fetch('http://localhost:3006/staff')
@@ -87,6 +88,9 @@ function CallSheetBuilderMaterial() {
             setEventToAdd([e.target.value])
         }
         eventCardGetter(e.target.value)
+        console.log("after add eventcards is: " + eventCallSheetCards)
+        setEventInEditor(() => e.target.value)
+
     }
 
     function handleEditChange(e){
@@ -105,14 +109,23 @@ function CallSheetBuilderMaterial() {
         }
     function handleEventRemove(e) {
         e.preventDefault()
-        const eventToGo = e.target.value
-        const correctedId = 1 + parseInt(eventToGo, 10)
-        const updatedItems = eventToAdd.filter(item => item !== correctedId);
-        setEventToAdd(updatedItems)
-        const updatedEventCards = eventCallSheetCards.filter(item => item.id !== ( eventToGo ))
-        setEventCallSheetCards(updatedEventCards)
-        }
-        console.log("eventcallsheetcards are:" + eventCallSheetCards)
+        const eventToGo = e.target.id
+        console.log("handEventRemove thinks eventToGo is: " + eventToGo)
+        // const correctedId = 1 + parseInt(eventToGo, 10)
+        // console.log("handEventRemove thinks correctedId is: " + correctedId)
+
+        const updatedItems = eventToAdd.filter(item => item !== eventToGo );
+        setEventInEditor(updatedItems)
+
+
+        const updatedEventCards = eventCallSheetCards.filter(item => item.id !==  eventToGo )
+        // console.log("handleEventRemove thinks updatedEventCards prior to state Type is: " + typeof updatedEventCards)
+        setEventCallSheetCards([updatedEventCards])
+        
+        
+        // console.log("in handleRemove after remove updated eventcards is: " + updatedEventCards)
+    }
+    // console.log("eventToAdd are:" + eventToAdd)
       
     function staffCardGetter(staffId) {
         const cardId = 1 + parseInt(staffId, 10)
@@ -122,11 +135,12 @@ function CallSheetBuilderMaterial() {
         .then((cards) => setStaffCallSheetCards([...staffCallSheetCards, cards]))
     }
     function eventCardGetter(eventId) {
-        const cardId = 1 + parseInt(eventId, 10)
-        console.log("eventCardGetter says eventId is: " + cardId)
-        fetch(`http://localhost:3006/events/${cardId}`)
+        // const cardId = 1 + parseInt(eventId, 10)
+        // console.log("eventCardGetter says eventId is: " + eventId)
+        // console.log("eventCardGetter says cardId is: " + cardId)
+        fetch(`http://localhost:3006/events/${eventId}`)
         .then((r)=> r.json())
-        .then((cards) => setEventCallSheetCards((cards) => cards))
+        .then((card) => setEventCallSheetCards([card]))
     }
 
     // const selectVals = () => {
@@ -138,7 +152,7 @@ function CallSheetBuilderMaterial() {
     //     }
     // }
     
-    console.log("staffCallSheetCards are: " + staffCallSheetCards)
+    // console.log("staffCallSheetCards are: " + staffCallSheetCards)
     // console.log(formData)
 
 //these are the table builder functions
@@ -147,16 +161,22 @@ function CallSheetBuilderMaterial() {
         const rows = arryToUse.filter((row) => row.id === correctedId)
             return rows.map((entry, index) => <TableRow key={index}>{renderCells(entry, staffId)}</TableRow>)
     }
+    function renderEventRowHead(eventId, arryToUse) {
+        // const correctedId = 1 + parseInt(staffId, 10)
+        const rows = arryToUse.filter((row) => row.id === eventId)
+            return rows.map((entry, index) => <TableBody key={uuid()}><TableRow key={index}>{renderCells(entry, eventId)}</TableRow></TableBody>)
+    }
 
     function renderCells(rowObject, staffId) {
         // const entries = Object.entries(rowObject)
         const { name, photo, department, phone, email, calltime, notes, id } = rowObject
         return (
             <>
-            <TableCell>{name}</TableCell>
-            <TableCell>{email}</TableCell>
-            <TableCell>{phone}</TableCell>
-            <TableCell>{email}</TableCell>
+            <TableCell><Typography component="p" variant="h6">{name}</Typography></TableCell>
+            <TableCell><Typography variant="body2">{email}</Typography></TableCell>
+            <TableCell><Typography variant="body2" textAlign="center">{phone}</Typography></TableCell>
+            <TableCell><Typography variant="body2">{department}</Typography></TableCell>
+            <TableCell><Typography variant="body2">{notes}</Typography></TableCell>
             </>
         )
         // return entries.map((cells) => (
@@ -204,6 +224,17 @@ function CallSheetBuilderMaterial() {
                                 </Button>
                                 
                         <Table>
+                        
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Email</TableCell>
+                                    <TableCell>Phone</TableCell>
+                                    <TableCell>Department</TableCell>
+                                    <TableCell>Notes</TableCell>
+                                </TableRow>
+                            </TableHead>
+                        
                             {renderRow(staffId, staffCallSheetCards)}
                         </Table>
                     </Box>
@@ -211,27 +242,30 @@ function CallSheetBuilderMaterial() {
             )
         })
         //render our call sheet event info
-    const renderCallSheetEvent = eventToAdd.map((staffId) => {
+    const renderCallSheetEvent = eventToAdd.map((eventId) => {
+        // console.log("renderCallSheetEvents thinks eventId is: " + eventId)
         return (
             <TableContainer key={uuid()}>
                     <Box 
                     sx={{
                         backgroundColor: 'primary.light',
                         color: 'black',
-                        display: 'flex'
+                        display: 'flex',
+                        width: 'auto',
                     }}
                     key={uuid()}>
                             <Button 
                                 key={uuid()} 
                                 variant="filled" 
-                                color="primary.main" 
+                                color="secondary" 
                                 size="large" 
-                                id={staffId}
+                                id={eventId}
                                 onClick={handleEventRemove}
+                                
                                 >Remove
                                 </Button>
                         <Table>
-                            {renderRow(staffId, eventCallSheetCards)}
+                            {renderEventRowHead(eventId, eventCallSheetCards)}
                         </Table>
                     </Box>
             </TableContainer>
@@ -251,7 +285,7 @@ function CallSheetBuilderMaterial() {
     return (
 
         <Box sx={{
-
+            width: "75%",
             mx:'auto',
         }}>
             <Box sx={{ 
@@ -295,16 +329,22 @@ function CallSheetBuilderMaterial() {
                                     <Grid item>
                                         <InputLabel id="event-selector-label">Choose your event</InputLabel>
                                             <Select
+                                                placeholder="Choose"
                                                 labelId="event-selector-label"
                                                 id="event-selector"
                                                 label="event-selector"
                                                 onChange={handleEventClick}
                                                 value={eventInEditor}
+                                                displayEmpty
+                                                renderValue={(selected) => {
+                                                    if (selected.length === 0) {
+                                                      return <em>Select Event</em>;
+                                                    }
+                                                    return selected
+                                                  }}
                                                 >
-                                                    <MenuItem value=""><em>Choose Event...</em></MenuItem>
-                                            {eachEvent.map((selection) => (
-                                                
-                                                <MenuItem key={selection.id} value={selection.id}>{selection.name}</MenuItem>
+                                                {eachEvent.map((selection) => (
+                                                    <MenuItem key={selection.id} value={selection.id}>{selection.name}</MenuItem>
                                                 ))}
                                             </Select>
                                     </Grid>
@@ -316,14 +356,34 @@ function CallSheetBuilderMaterial() {
             </Box>
             <Box>
                 <Box>
+                <Typography variant="h4" component="h3">Event In Call Sheet</Typography>
+                <Box sx={{
+                    backgroundColor: 'primary.light',
+                    minHeight: '50px',
+                    height: 'auto',
+                    width: '100%',
+                }}>
                     {renderCallSheetEvent}
                 </Box>
-                <Box>
-                    {renderCallSheetStaff}
+                </Box>
+                <Box sx={{
+                    backgroundColor: 'secondary.main',
+                    height: '50',
+                    width: '100'
+                }}>
+                    <Typography variant="h4" component="h3" >Staff In Call Sheet</Typography>
+                    <Box sx={{
+                        backgroundColor: 'primary.light',
+                        minHeight: '50px',
+                        height: 'auto',
+                        width: '100%',
+                    }}>
+                        {renderCallSheetStaff}
+                        </Box>
                 </Box>                
                     <Box sx={{
                         width: '100%',
-                        backgroundColor: 'primary'
+                        backgroundColor: 'secondary'
                     }}>
                         <TextField
                             label="Call Sheet Name" 
