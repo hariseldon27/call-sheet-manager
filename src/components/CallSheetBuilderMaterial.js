@@ -55,7 +55,9 @@ function CallSheetBuilderMaterial() {
         notes: '',
         })
 
-        console.log("event in editor is: " + eventInEditor)
+        // const eventName = eventCallSheetCards.name
+        // console.log(eventCallSheetCards[0].name)
+
             //staff fetch
             useEffect(()=> {
                 fetch('http://localhost:3006/staff')
@@ -177,24 +179,6 @@ function CallSheetBuilderMaterial() {
         }
 //fenceposts - divert our rowobject above and have it build fixed table rows
 
-
-
-// fenceposts - this cellCheckerfunction isn't needed currently because we are using set rows
-        // function cellChecker(cellData, staffId) {
-        //     if (
-        //         typeof cellData === 'object' &&
-        //         !Array.isArray(cellData) &&
-        //         cellData !== null 
-        //     ) {
-        //         const cellObject = Object.values(cellData)
-        //         return cellObject.map((obj) => <TableRow key={obj.id}>{cellChecker(obj)}</TableRow>)
-        //     } else {
-        //         return <TableCell key={cellData.id}>{cellData}</TableCell>
-        //     }
-        // }
-
-
-
         //render our call sheet staff buttons
 
     const renderCallSheetStaff = staffToAdd.map((staffId) => {
@@ -258,15 +242,22 @@ function CallSheetBuilderMaterial() {
             )
         })
 
-        // function createData(name, phone, department, email, calltime, notes ) {
-        //     return { name, phone, department, email, calltime, notes  };
-        //   }
-
-        // const rows = [
-        //     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        //   ];
-          
-  
+        const nameToRender = () => {
+            if (eventCallSheetCards.length <= 0) {
+                return 'select'
+            } else{
+                return eventCallSheetCards[0].name
+            }
+        }
+        const eventIdToRender = () => {
+            if (eventCallSheetCards.length <= 0) {
+                return ''
+            } else{
+                return eventCallSheetCards[0].id
+            }
+        }
+        // eventCallSheetCards.filter((eachEvent) => eachEvent.id === eventInEditor)
+        // console.log(nameToRender[0]['id'])
 
     return (
 
@@ -323,13 +314,13 @@ function CallSheetBuilderMaterial() {
                                                 id="event-selector"
                                                 label="event-selector"
                                                 onChange={handleEventClick}
-                                                value={eventInEditor}
+                                                value={eventIdToRender()}
                                                 displayEmpty
                                                 renderValue={(selected) => {
                                                     if (selected.length === 0) {
                                                       return <em>Select Event</em>;
                                                     }
-                                                    return selected
+                                                    return nameToRender()
                                                   }}
                                                 >
                                                 {eachEvent.map((selection) => (
