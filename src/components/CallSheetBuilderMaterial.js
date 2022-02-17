@@ -22,6 +22,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
+import uuid from 'react-uuid'
 
 
 
@@ -31,11 +32,9 @@ function CallSheetBuilderMaterial() {
     const staffers = staffList.map((individualStaff) => individualStaff);
     const [eventList, setEventList] = useState([])
     const eachEvent = eventList.map((eachEvent) => eachEvent)
-    
-    const [isChecked, setIsChecked] = useState()
-    
-    const [eventStaffList, setEventStaffList] = useState()
+
     const [staffToAdd, setStaffToAdd] = useState([])
+    const [staffCallSheetCards, setStaffCallSheetCards] = useState([])
     const [callSheetInEditor, setCallSheetInEditor] = useState()
 
             //staff fetch
@@ -51,10 +50,6 @@ function CallSheetBuilderMaterial() {
                 .then(setEventList)
             }, [])
 
-    
-        useEffect(() => {
-            console.log(staffToAdd)
-        },[staffToAdd])
   
     function handleStaffClick(e) {
         e.preventDefault()
@@ -63,6 +58,7 @@ function CallSheetBuilderMaterial() {
         } else {
             setStaffToAdd([...staffToAdd, e.target.id])
         }
+        staffCardGetter(e.target.id)
     }
 
     function handleCreateNewCallSheet(e){
@@ -77,12 +73,22 @@ function CallSheetBuilderMaterial() {
         setStaffToAdd(updatedItems)
         }
       
-
+    function staffCardGetter(staffId) {
+        const cardId = 1 + parseInt(staffId, 10)
+        console.log(cardId)
+        fetch(`http://localhost:3006/staff/${cardId}`)
+        .then((r)=> r.json())
+        .then(setStaffCallSheetCards)
+    }
     
+    // const staffCardBuilder = staffCallSheetCards.map((card) => console.log(card))
+    
+
+    // console.log(staffCallSheetCards)
 
     const renderCallSheetStaff = staffToAdd.map((staffId) => {
             return (
-            <Box key={staffId}>
+            <Box key={uuid()}>
                 <Button 
                       key={staffId} 
                       variant="outlined" 
@@ -91,6 +97,20 @@ function CallSheetBuilderMaterial() {
                       id={staffId}
                       onClick={handleStaffRemove}
                       >{staffId}</Button>
+                <Box 
+                sx={{
+                    width: 100,
+                    height: 'auto',
+                    backgroundColor: 'secondary.light',
+                }}
+                key={uuid()}>
+                    
+                    { 
+                    for (let i=0; i < staffCallSheetCards.length; i++ ) {
+                    staffCallSheetCards[i].name
+                    }
+                    }
+                </Box>
             </Box>
             )
         })
