@@ -113,19 +113,10 @@ function CallSheetBuilderMaterial() {
         e.preventDefault()
         const eventToGo = e.target.id
         console.log("handEventRemove thinks eventToGo is: " + eventToGo)
-        // const correctedId = 1 + parseInt(eventToGo, 10)
-        // console.log("handEventRemove thinks correctedId is: " + correctedId)
-
         const updatedItems = eventToAdd.filter(item => item !== eventToGo );
         setEventInEditor(updatedItems)
-
-
         const updatedEventCards = eventCallSheetCards.filter(item => item.id !==  eventToGo )
-        // console.log("handleEventRemove thinks updatedEventCards prior to state Type is: " + typeof updatedEventCards)
-        setEventCallSheetCards([updatedEventCards])
-        
-        
-        // console.log("in handleRemove after remove updated eventcards is: " + updatedEventCards)
+        setEventCallSheetCards([updatedEventCards])        
     }
     // console.log("eventToAdd are:" + eventToAdd)
       
@@ -153,12 +144,27 @@ function CallSheetBuilderMaterial() {
     function renderRow(staffId, arryToUse) {
         const correctedId = 1 + parseInt(staffId, 10)
         const rows = arryToUse.filter((row) => row.id === correctedId)
-            return rows.map((entry, index) => <TableRow key={index}>{renderCells(entry, staffId)}</TableRow>)
+            return rows.map((entry, index) => 
+            
+            <TableRow key={uuid()}>
+                        <TableCell 
+                        key={uuid()} 
+                        color="primary.main" 
+                        id={staffId}
+                        name="deleteButton"
+                        onClick={handleStaffRemove}
+                        position="absolute"
+                        cursor="pointer"
+                        >
+                        Remove
+                        </TableCell>
+                {renderCells(entry, staffId)}
+            </TableRow>)
     }
     function renderEventRowHead(eventId, arryToUse) {
         // const correctedId = 1 + parseInt(staffId, 10)
         const rows = arryToUse.filter((row) => row.id === eventId)
-            return rows.map((entry, index) => <TableBody key={uuid()}><TableRow key={index}>{renderCells(entry, eventId)}</TableRow></TableBody>)
+            return rows.map((entry, index) => <TableRow key={entry.id}>{renderCells(entry, eventId)}</TableRow>)
     }
 
     function renderCells(rowObject, staffId) {
@@ -166,16 +172,13 @@ function CallSheetBuilderMaterial() {
         const { name, photo, department, phone, email, calltime, notes, id } = rowObject
         return (
             <>
-            <TableCell><Typography component="p" variant="h6">{name}</Typography></TableCell>
-            <TableCell><Typography variant="body2">{email}</Typography></TableCell>
-            <TableCell><Typography variant="body2" textAlign="center">{phone}</Typography></TableCell>
-            <TableCell><Typography variant="body2">{department}</Typography></TableCell>
-            <TableCell><Typography variant="body2">{notes}</Typography></TableCell>
+            <TableCell key={name}><Typography component="p" variant="h6">{name}</Typography></TableCell>
+            <TableCell key={email}><Typography variant="body2">{email}</Typography></TableCell>
+            <TableCell key={phone}><Typography variant="body2" textAlign="center">{phone}</Typography></TableCell>
+            <TableCell key={department}><Typography variant="body2">{department}</Typography></TableCell>
+            <TableCell key={notes}><Typography variant="body2">{notes}</Typography></TableCell>
             </>
         )
-        // return entries.map((cells) => (
-        //     cellChecker(cells, staffId)
-        //     ))
         }
 //fenceposts - divert our rowobject above and have it build fixed table rows
 
@@ -184,30 +187,10 @@ function CallSheetBuilderMaterial() {
     const renderCallSheetStaff = staffToAdd.map((staffId) => {
         return (
             
-                    // <Box 
-                    // sx={{
-                    //     backgroundColor: 'primary.light',
-                    //     color: 'black',
-                    //     display: 'flex'
-                    // }}
-                    // key={uuid()}>
                     <>
-                        <Button 
-                        key={uuid()} 
-                        variant="filled" 
-                        color="primary.main" 
-                        size="large" 
-                        id={staffId}
-                        onClick={handleStaffRemove}
-                        position="absolute"
-
-                        >X
-                        </Button>                                
-                        
-                            {renderRow(staffId, staffCallSheetCards)}
-                        
-                        </>
-                    // </Box>
+                                             
+                            {renderRow(staffId, staffCallSheetCards)} 
+                    </>
             
             )
         })
@@ -235,7 +218,9 @@ function CallSheetBuilderMaterial() {
                                 >Remove
                                 </Button>
                         <Table>
-                            {renderEventRowHead(eventId, eventCallSheetCards)}
+                            <TableBody>
+                                {renderEventRowHead(eventId, eventCallSheetCards)}
+                            </TableBody>
                         </Table>
                     </Box>
             </TableContainer>
@@ -243,7 +228,7 @@ function CallSheetBuilderMaterial() {
         })
 
         const nameToRender = () => {
-            if (eventCallSheetCards.length <= 0) {
+            if (eventCallSheetCards.length === 0) {
                 return 'select'
             } else{
                 return eventCallSheetCards[0].name
@@ -256,8 +241,7 @@ function CallSheetBuilderMaterial() {
                 return eventCallSheetCards[0].id
             }
         }
-        // eventCallSheetCards.filter((eachEvent) => eachEvent.id === eventInEditor)
-        // console.log(nameToRender[0]['id'])
+
 
     return (
 
@@ -311,17 +295,13 @@ function CallSheetBuilderMaterial() {
                                             <Select
                                                 placeholder="Choose"
                                                 labelId="event-selector-label"
-                                                id="event-selector"
+                                                id={eventInEditor.id}
                                                 label="event-selector"
                                                 onChange={handleEventClick}
-                                                value={eventIdToRender()}
+                                                value={eventInEditor.id}
                                                 displayEmpty
-                                                renderValue={(selected) => {
-                                                    if (selected.length === 0) {
-                                                      return <em>Select Event</em>;
-                                                    }
-                                                    return nameToRender()
-                                                  }}
+                                                displayValue={eventInEditor}
+
                                                 >
                                                 {eachEvent.map((selection) => (
                                                     <MenuItem key={selection.id} value={selection.id}>{selection.name}</MenuItem>
@@ -362,15 +342,18 @@ function CallSheetBuilderMaterial() {
                         <Table>
                         
                             <TableHead>
-                                <TableRow>
-                                    <TableCell>Name</TableCell>
-                                    <TableCell>Email</TableCell>
-                                    <TableCell>Phone</TableCell>
-                                    <TableCell>Department</TableCell>
-                                    <TableCell>Notes</TableCell>
+                                <TableRow key={uuid()}>
+                                    <TableCell key="tableDel"> </TableCell>
+                                    <TableCell key="tableName">Name</TableCell>
+                                    <TableCell key="tableEmail">Email</TableCell>
+                                    <TableCell key="tablePhone">Phone</TableCell>
+                                    <TableCell key="tableDeptartment">Department</TableCell>
+                                    <TableCell key="tableNotes">Notes</TableCell>
                                 </TableRow>
                             </TableHead>
+                            <TableBody key={uuid()}>
                             {renderCallSheetStaff}
+                            </TableBody>
                         </Table>
                         </TableContainer>
                     </Box>
