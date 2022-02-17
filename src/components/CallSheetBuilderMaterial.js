@@ -15,14 +15,16 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DoNotDisturbTwoToneIcon from '@mui/icons-material/DoNotDisturbTwoTone';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Container } from '@mui/material';
-import FormLabel from '@mui/material/FormLabel';
-import FormControl from '@mui/material/FormControl';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormHelperText from '@mui/material/FormHelperText';
-import Checkbox from '@mui/material/Checkbox';
-import Stack from '@mui/material/Stack';
 import uuid from 'react-uuid'
+import TextField from '@mui/material/TextField';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+
 
 
 
@@ -36,6 +38,10 @@ function CallSheetBuilderMaterial() {
     const [staffToAdd, setStaffToAdd] = useState([])
     const [staffCallSheetCards, setStaffCallSheetCards] = useState([])
     const [callSheetInEditor, setCallSheetInEditor] = useState()
+    const [formData, setFormData] = useState({
+        name: '',
+        notes: '',
+        })
 
             //staff fetch
             useEffect(()=> {
@@ -60,10 +66,9 @@ function CallSheetBuilderMaterial() {
         }
         staffCardGetter(e.target.id)
     }
-
-    function handleCreateNewCallSheet(e){
-        e.preventDefault()   
-    }
+    function handleEditChange(e){
+        setFormData((updated) => ({...updated, [e.target.name]: e.target.value}))
+      } 
 
     function handleStaffRemove(e) {
         e.preventDefault()
@@ -84,100 +89,140 @@ function CallSheetBuilderMaterial() {
         .then((cards) => setStaffCallSheetCards([...staffCallSheetCards, cards]))
     }
     
-    console.log(staffCallSheetCards)
+    // console.log(staffCallSheetCards)
+    console.log(formData)
 
-
-    function renderRow(staffId) {
+//these are the table builder functions
+    function renderRow(staffId, arryToUse) {
         const correctedId = 1 + parseInt(staffId, 10)
-        const rows = staffCallSheetCards.filter((row) => row.id === correctedId)
+        const rows = arryToUse.filter((row) => row.id === correctedId)
             return rows.map((entry, index) => <tr key={index}>{renderCells(entry, staffId)}</tr>)
     }
 
-    function renderCells(rowObject) {
+    function renderCells(rowObject, staffId) {
         const entries = Object.values(rowObject)
         return entries.map((cells) => (
-            cellChecker(cells)
+            cellChecker(cells, staffId)
             ))
         }
+//fenceposts - divert our rowobject above and have it build fixed table rows
 
-        function cellChecker(cellData) {
+        function cellChecker(cellData, staffId) {
             if (
                 typeof cellData === 'object' &&
                 !Array.isArray(cellData) &&
                 cellData !== null 
             ) {
                 const cellObject = Object.values(cellData)
-                return cellObject.map((obj) => <tr key={obj.id}>{cellChecker(obj)}</tr>)
+                return cellObject.map((obj) => <TableRow key={obj.id}>{cellChecker(obj)}</TableRow>)
             } else {
-                return <td key={cellData.id}>{cellData}</td>
+                return <TableCell key={cellData.id}>{cellData}</TableCell>
             }
         }
 
+
+        
     const renderCallSheetStaff = staffToAdd.map((staffId) => {
         return (
-            <Box key={uuid()}>
-                <Button 
-                      key={staffId} 
-                      variant="outlined" 
-                      color="secondary" 
-                      size="large" 
-                      id={staffId}
-                      onClick={handleStaffRemove}
-                      >{staffId}</Button>
-                <Box 
-                sx={{
-                    backgroundColor: 'secondary.light',
-                }}
-                key={uuid()}>
- 
-                    <tbody>{renderRow(staffId)}</tbody>
-                </Box>
-            </Box>
+            <TableContainer>
+                    <Box 
+                    sx={{
+                        backgroundColor: 'primary.light',
+                        color: 'black',
+                        display: 'flex'
+                    }}
+                    key={uuid()}>
+                            <Button 
+                                key={staffId} 
+                                variant="oulined" 
+                                color="primary.main" 
+                                size="large" 
+                                id={staffId}
+                                onClick={handleStaffRemove}
+                                ><DeleteIcon />
+                                </Button>
+                        <Table>
+                            <TableRow>
+                            
+                            {renderRow(staffId, staffCallSheetCards)}
+                            </TableRow>
+                        </Table>
+                    </Box>
+            </TableContainer>
             )
         })
+
+       
   
 
     return (
-        <Box sx={{ mx:'auto'}}>
-            <Box>
-                <Stack>
-                  {staffers.map((staff, id) => (
-                      <Button 
-                      key={id} 
-                      variant="outlined" 
-                      color="secondary" 
-                      size="large" 
-                      id={id}
-                      onClick={handleStaffClick}
-                      >{staff.name}</Button>
-                  ))}     
-                  </Stack>
-            </Box>
-            <Box sx={{
-                width: 200,
-                height: 200,
-                backgroundColor: 'secondary.main',
 
-            }}>
-                <Box sx={{
-                    width: 'auto',
-                    height: 100,
-                    backgroundColor: 'primary.light',
-                    mx: 'auto',
-                    display: 'flex',
-                    alignContent: 'center',
-                    textAlign: 'center'                    
-
+        <Box sx={{
+            maxWidth: 'md',
+            mx:'auto',
+        }}>
+            <Box sx={{ 
+                mx:'auto',
+                py: 5,
+                display: 'inline-flex'
                 }}>
-                {renderCallSheetStaff}
-                </Box>
 
+                <Box sx={{
+                    display: 'flex'
+                 }}>
+                    {/* left side this holds the staff buttons to add to the sheet */}
+                    {staffers.map((staff, id) => (
+                        <Button 
+                        key={id} 
+                        variant="outlined" 
+                        color="secondary" 
+                        size="large" 
+                        id={id}
+                        onClick={handleStaffClick}
+                        >{staff.name}</Button>
+                    ))}     
+                </Box>
+                <Box sx={{
+                    display:'flex'
+                }}> 
+                    {/* right sidehave this hold the event list */}
+
+                </Box>
+            {/* close the top container */}
             </Box>
-            
-        <Box>
+            <Box>
+                <Box>
+                    {/* {renderCallSheetStaff} */}
+
+                    <TableContainer>
+                        
+                    </TableContainer>
+
+
+                </Box>                
+                    <Box sx={{
+                        width: '100%',
+                        backgroundColor: 'primary'
+                    }}>
+                        <TextField
+                            label="Call Sheet Name" 
+                            variant="outlined" 
+                            name="name"
+                            value={formData.name} 
+                            onChange={handleEditChange}
+                            />
+                        <TextField
+                            label="Event Notes...Parking, wardrobe, etc" 
+                            variant="outlined" 
+                            name="notes"
+                            multiline
+                            value={formData.notes} 
+                            onChange={handleEditChange}
+                            />
+                    </Box>
+            </Box>
+        </Box>
         
-        </Box>
-        </Box>
     )
 }
 
