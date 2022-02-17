@@ -14,6 +14,9 @@ import { useParams} from 'react-router-dom'
 import { Link as RouterLink } from 'react-router-dom';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
+
+
+
 function EventsCardMaterial() {
 
   const [ eventInView, setEventInView ] = useState(null)
@@ -28,8 +31,10 @@ function EventsCardMaterial() {
       .then(setEventInView)
   },[id])
 
-console.log(id)
 
+  console.log(location)
+// console.log(id)
+console.log(typeof location)
 
   return (
     <Box sx={{
@@ -74,8 +79,9 @@ console.log(id)
                 <Typography variant="body2" color="text.secondary">
                 MAP
                 </Typography>
-                <Wrapper apiKey={"AIzaSyCUAtRjjf2JSZt5_UD3OEOYlD_O_hnXYZs"}>
-                  {/* <MapContainer /> */}
+                <Wrapper >
+              
+               
                 </Wrapper>
 
 
