@@ -13,6 +13,8 @@ import Box from '@mui/material/Box';
 import { useParams} from 'react-router-dom'
 import { Link as RouterLink } from 'react-router-dom';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import Geolocation from './Geolocation';
+import WeatherApi from './WeatherApi';
 
 function EventsCardMaterial() {
 
@@ -28,8 +30,8 @@ function EventsCardMaterial() {
       .then(setEventInView)
   },[id])
 
-console.log(id)
-
+// console.log(id)
+console.log(typeof location)
 
   return (
     <Box sx={{
@@ -75,7 +77,8 @@ console.log(id)
                 MAP
                 </Typography>
                 <Wrapper apiKey={"AIzaSyCUAtRjjf2JSZt5_UD3OEOYlD_O_hnXYZs"}>
-                  {/* <MapContainer /> */}
+                 <WeatherApi location = {location} /> 
+               
                 </Wrapper>
 
 
