@@ -88,7 +88,8 @@ function CallSheetBuilderMaterial() {
 
 
     function renderRow(staffId) {
-        const rows = staffCallSheetCards.filter((row) => row.id == staffId)
+        const correctedId = 1 + parseInt(staffId, 10)
+        const rows = staffCallSheetCards.filter((row) => row.id === correctedId)
             return rows.map((entry, index) => <tr key={index}>{renderCells(entry, staffId)}</tr>)
     }
 
@@ -125,8 +126,6 @@ function CallSheetBuilderMaterial() {
                       >{staffId}</Button>
                 <Box 
                 sx={{
-                    width: 100,
-                    height: 'auto',
                     backgroundColor: 'secondary.light',
                 }}
                 key={uuid()}>
@@ -136,15 +135,10 @@ function CallSheetBuilderMaterial() {
             </Box>
             )
         })
-                    
-        
-
-
-
   
 
     return (
-        <Box sx={{ display: 'flex', mx:'auto'}}>
+        <Box sx={{ mx:'auto'}}>
             <Box>
                 <Stack>
                   {staffers.map((staff, id) => (
@@ -166,22 +160,22 @@ function CallSheetBuilderMaterial() {
 
             }}>
                 <Box sx={{
-                    width: 100,
+                    width: 'auto',
                     height: 100,
-                    backgroundColor: 'primary.main',
+                    backgroundColor: 'primary.light',
                     mx: 'auto',
                     display: 'flex',
                     alignContent: 'center',
                     textAlign: 'center'                    
 
                 }}>
-                Hi There
+                {renderCallSheetStaff}
                 </Box>
 
             </Box>
             
         <Box>
-        {renderCallSheetStaff}
+        
         </Box>
         </Box>
     )
