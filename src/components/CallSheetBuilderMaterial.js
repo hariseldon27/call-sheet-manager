@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link as RouterLink, MemoryRouter } from 'react-router-dom';
-import { useParams } from 'react-router-dom'
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import DoNotDisturbTwoToneIcon from '@mui/icons-material/DoNotDisturbTwoTone';
-import CssBaseline from '@mui/material/CssBaseline';
 import { Container } from '@mui/material';
 import uuid from 'react-uuid'
 import TextField from '@mui/material/TextField';
@@ -22,15 +11,10 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 
@@ -54,9 +38,6 @@ function CallSheetBuilderMaterial() {
         name: '',
         notes: '',
         })
-
-        // const eventName = eventCallSheetCards.name
-        // console.log(eventCallSheetCards[0].name)
 
             //staff fetch
             useEffect(()=> {
@@ -128,9 +109,6 @@ function CallSheetBuilderMaterial() {
         .then((cards) => setStaffCallSheetCards([...staffCallSheetCards, cards]))
     }
     function eventCardGetter(eventId) {
-        // const cardId = 1 + parseInt(eventId, 10)
-        // console.log("eventCardGetter says eventId is: " + eventId)
-        // console.log("eventCardGetter says cardId is: " + cardId)
         fetch(`http://localhost:3006/events/${eventId}`)
         .then((r)=> r.json())
         .then((card) => setEventCallSheetCards([card]))
@@ -162,13 +140,11 @@ function CallSheetBuilderMaterial() {
             </TableRow>)
     }
     function renderEventRowHead(eventId, arryToUse) {
-        // const correctedId = 1 + parseInt(staffId, 10)
         const rows = arryToUse.filter((row) => row.id === eventId)
             return rows.map((entry, index) => <TableRow key={entry.id}>{renderCells(entry, eventId)}</TableRow>)
     }
 
     function renderCells(rowObject, staffId) {
-        // const entries = Object.entries(rowObject)
         const { name, photo, department, phone, email, calltime, notes, id } = rowObject
         return (
             <>
