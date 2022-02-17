@@ -5,9 +5,9 @@ import {
   Switch, 
   Route 
   } from 'react-router-dom'
-import StaffContainerMaterial from './components/StaffContainerMaterial';
+import StaffContainerMaterial from '../../src/components/StaffContainerMaterial';
 import EventsContainer from './components/EventsContainer';
-import CallSheetList from './components/CallSheetList';
+import CallSheetList from '../../src/components/CallSheetList';
 import StaffCard from './components/StaffCard';
 import EventsCard from './components/EventsCard';
 import StaffEditor from './components/StaffEditor';

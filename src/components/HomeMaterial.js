@@ -15,7 +15,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import { pink } from '@mui/material/colors' 
-import Geolocation from './Geolocation';
+
 
 
 function HomeMaterial() {
@@ -82,7 +82,7 @@ function HomeMaterial() {
                     </List>
                 </Box>
             </Paper>     
-                    <Geolocation />
+               
         </Stack>
     </Box>  
     
