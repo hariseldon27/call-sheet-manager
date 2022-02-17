@@ -71,23 +71,49 @@ function CallSheetBuilderMaterial() {
         console.log(staffToGo)
         const updatedItems = staffToAdd.filter(item => item !== staffToGo);
         setStaffToAdd(updatedItems)
+        const correctedId = 1 + parseInt(staffToGo, 10)
+        const updatedStaffCards = staffCallSheetCards.filter(item => item.id !== ( correctedId ))
+        setStaffCallSheetCards(updatedStaffCards)
         }
       
     function staffCardGetter(staffId) {
         const cardId = 1 + parseInt(staffId, 10)
-        console.log(cardId)
+        // console.log(cardId)
         fetch(`http://localhost:3006/staff/${cardId}`)
         .then((r)=> r.json())
-        .then(setStaffCallSheetCards)
+        .then((cards) => setStaffCallSheetCards([...staffCallSheetCards, cards]))
     }
     
-    // const staffCardBuilder = staffCallSheetCards.map((card) => console.log(card))
-    
+    console.log(staffCallSheetCards)
 
-    // console.log(staffCallSheetCards)
+
+    function renderRow(staffId) {
+        const rows = staffCallSheetCards.filter((row) => row.id == staffId)
+            return rows.map((entry, index) => <tr key={index}>{renderCells(entry, staffId)}</tr>)
+    }
+
+    function renderCells(rowObject) {
+        const entries = Object.values(rowObject)
+        return entries.map((cells) => (
+            cellChecker(cells)
+            ))
+        }
+
+        function cellChecker(cellData) {
+            if (
+                typeof cellData === 'object' &&
+                !Array.isArray(cellData) &&
+                cellData !== null 
+            ) {
+                const cellObject = Object.values(cellData)
+                return cellObject.map((obj) => <tr key={obj.id}>{cellChecker(obj)}</tr>)
+            } else {
+                return <td key={cellData.id}>{cellData}</td>
+            }
+        }
 
     const renderCallSheetStaff = staffToAdd.map((staffId) => {
-            return (
+        return (
             <Box key={uuid()}>
                 <Button 
                       key={staffId} 
@@ -104,12 +130,8 @@ function CallSheetBuilderMaterial() {
                     backgroundColor: 'secondary.light',
                 }}
                 key={uuid()}>
-                    
-                    { 
-                    for (let i=0; i < staffCallSheetCards.length; i++ ) {
-                    staffCallSheetCards[i].name
-                    }
-                    }
+ 
+                    <tbody>{renderRow(staffId)}</tbody>
                 </Box>
             </Box>
             )
