@@ -21,92 +21,126 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
+import Stack from '@mui/material/Stack';
+
 
 
 function CallSheetBuilderMaterial() {
 
     const [staffList, setStaffList] = useState([])
     const staffers = staffList.map((individualStaff) => individualStaff);
-    const [checkedValues, setCheckedValues] = useState([]);
-    const cvProps = { staffers, checkedValues, setCheckedValues };
     const [eventList, setEventList] = useState([])
-    const indivEvent = eventList.map((eachEvent) => eachEvent)
+    const eachEvent = eventList.map((eachEvent) => eachEvent)
     
-    const [callSheetData, setCallSheetData] = useState({
-        callSheetStaffIds: [],
-        callSheetEventId: [],
-        callSheetNotes: "Notes..."
-    })
-    const { callSheetStaffIds, callSheetEventId, callSheetNotes } = callSheetData
+    const [isChecked, setIsChecked] = useState()
     
-    const [selectedStaff, setSelectedStaff] = useState([])
-    
-    //staff fetch
-    useEffect(()=> {
-        fetch('http://localhost:3006/staff')
-        .then(r => r.json())
-        .then(setStaffList)
-    }, [])
-    //events fetch
-    useEffect(()=> {
-        fetch('http://localhost:3006/events')
-        .then(r => r.json())
-        .then(setEventList)
-    }, [])
-    //callsheet data
-    useEffect(()=> {
-        console.log(selectedStaff)
-    }, [selectedStaff])
+    const [eventStaffList, setEventStaffList] = useState()
+    const [staffToAdd, setStaffToAdd] = useState([])
+    const [callSheetInEditor, setCallSheetInEditor] = useState()
 
-    console.log(selectedStaff)
+            //staff fetch
+            useEffect(()=> {
+                fetch('http://localhost:3006/staff')
+                .then(r => r.json())
+                .then(setStaffList)
+            }, [])
+            //events fetch
+            useEffect(()=> {
+                fetch('http://localhost:3006/events')
+                .then(r => r.json())
+                .then(setEventList)
+            }, [])
 
     
-            const staffChecks = []
-            const handleChecked = e => {
-                const staffId = e.target.id
-                if (e.target.checked) {
-                    staffChecks.push(staffId)
-                }
-                else {
-                    const removeIndex = staffChecks.indexOf(staffId)
-                    if (removeIndex > -1)
-                    {
-                        staffChecks.splice(removeIndex, 1); 
-                    }
+        useEffect(() => {
+            console.log(staffToAdd)
+        },[staffToAdd])
+  
+    function handleStaffClick(e) {
+        e.preventDefault()
+        if (staffToAdd.find(ele => ele === e.target.id) ) {
+            return null
+        } else {
+            setStaffToAdd([...staffToAdd, e.target.id])
+        }
+    }
 
-                    // return staffChecks.filter(item => item === staffId)
-                }
-                console.log(staffChecks)
-            }
-            
-                
-            function StaffSelector(e) {
+    function handleCreateNewCallSheet(e){
+        e.preventDefault()   
+    }
 
-                return (
-                    <FormGroup>
-                        {staffers.map((staff, id) => (
-                            <FormControlLabel key={id}
-                            control={
-                                 <Checkbox id={`${id}`} onChange={handleChecked} />
-                            }
-                            label={staff.name}
-                        />
-                        ))}
-                    </FormGroup>
-                )
-            }
+    function handleStaffRemove(e) {
+        e.preventDefault()
+        const staffToGo = e.target.id
+        console.log(staffToGo)
+        const updatedItems = staffToAdd.filter(item => item !== staffToGo);
+        setStaffToAdd(updatedItems)
+        }
+      
+
     
+
+    const renderCallSheetStaff = staffToAdd.map((staffId) => {
+            return (
+            <Box key={staffId}>
+                <Button 
+                      key={staffId} 
+                      variant="outlined" 
+                      color="secondary" 
+                      size="large" 
+                      id={staffId}
+                      onClick={handleStaffRemove}
+                      >{staffId}</Button>
+            </Box>
+            )
+        })
+                    
+        
+
+
+
+  
 
     return (
-        <Box sx={{ display: 'flex' }}>
-        <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-            <FormLabel component="legend">Choose Staff</FormLabel>
-                <StaffSelector />
-            <FormHelperText>Choose Wisely</FormHelperText>
-            </FormControl>
-            <FormControl >
+        <Box sx={{ display: 'flex', mx:'auto'}}>
+            <Box>
+                <Stack>
+                  {staffers.map((staff, id) => (
+                      <Button 
+                      key={id} 
+                      variant="outlined" 
+                      color="secondary" 
+                      size="large" 
+                      id={id}
+                      onClick={handleStaffClick}
+                      >{staff.name}</Button>
+                  ))}     
+                  </Stack>
+            </Box>
+            <Box sx={{
+                width: 200,
+                height: 200,
+                backgroundColor: 'secondary.main',
 
-            </FormControl>
+            }}>
+                <Box sx={{
+                    width: 100,
+                    height: 100,
+                    backgroundColor: 'primary.main',
+                    mx: 'auto',
+                    display: 'flex',
+                    alignContent: 'center',
+                    textAlign: 'center'                    
+
+                }}>
+                Hi There
+                </Box>
+
+            </Box>
+            
+        <Box>
+        {renderCallSheetStaff}
+        </Box>
         </Box>
     )
 }

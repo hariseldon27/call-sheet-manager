@@ -28,7 +28,7 @@ function EventsCardMaterial() {
       .then(setEventInView)
   },[id])
 
-console.log(id)
+  console.log(id)
 
 
   return (

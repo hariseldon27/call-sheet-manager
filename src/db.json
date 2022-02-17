@@ -103,5 +103,29 @@
       "id": 4
 
     }
+  ],
+  "callsheets": [
+    {
+      "id": 1,
+      "staffers": [{
+        "id": 1,
+        "name": ""
+      }],
+      "callSheetName": "",
+      "callSheetStaffIds": [],
+      "callSheetEventId": "",
+      "notes": "I like turtles, but then again it is turtles all the way down!"
+    },
+    {
+      "id": 1,
+      "staffers": [{
+        "id": 1,
+        "name": ""
+      }],
+      "callSheetName": "",
+      "callSheetStaffIds": [],
+      "callSheetEventId": "",
+      "notes": "I like turtles, but then again it is turtles all the way down!"
+    }
   ]
 }
