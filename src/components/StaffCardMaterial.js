@@ -56,7 +56,7 @@ function StaffCardMaterial( {  } ) {
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
             component="img"
-            height="140"
+            height="600"
             image={photo}
             alt="staff headshot"
           />
