@@ -31,14 +31,14 @@ const callSheetTheme = createTheme({
         mode: 'dark',
         primary: {
           main: '#546e7a', 
-          light: '#819ca9',
+          light: '#d4cdbe',
           dark: '#29434e'
 
         },
         secondary: {
-          main: '#ffab00',
+          main: '#fab625',
           light: '#ffdd4b',
-          dark: '#c67c00'
+          dark: '#fab625'
         },
         background: {
           default: '#fff',

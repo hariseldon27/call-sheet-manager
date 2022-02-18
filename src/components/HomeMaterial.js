@@ -20,12 +20,6 @@ import { pink } from '@mui/material/colors'
 
 function HomeMaterial() {
 
-    const buttons = [
-        <Button component={RouterLink} to={'/staff'} key="staff">Staff</Button>,
-        <Button component={RouterLink} to={'/events'} key="events">Events</Button>,
-        <Button component={RouterLink} to={'/callsheets'} key="callsheets">Call Sheets</Button>,
-      ];
-
 
   return (
     <Box sx={{
@@ -39,49 +33,35 @@ function HomeMaterial() {
                mx: 'auto',
                mb: 5,
            }}>
-                <ButtonGroup
-                    orientation="vertical"
-                    aria-label="vertical contained button group"
-                    variant="contained"
-                    size="large"
-                    
-                >
-                    {buttons}
-                </ButtonGroup>
-            </Box>
+               {/* home buttons here */}
+        <Button 
+            component={RouterLink} 
+            to={'/staff'} 
+            key="staff"
+            variant="contained"
+            padding= '50px'
+            m = '50px' >
+                Staff
+        </Button>
+        <br></br>
+        <Button 
             
-             <Paper sx={{width: 500, mx: 'auto'}}>
-                <Box sx={{ 
-                    flexGrow: 1,
-                    alignContent: 'center',
-                    display: 'grid',
-                    mx: 'auto'
-                    }}>
-                    <List>
-                        <Typography component="h2" variant="h4">Recent Call Sheets</Typography>
-                        <Divider />
-                        <ListItem>
-                        <ListItemIcon>
-                            <FolderIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Whitehouse Photo Op" secondary="22 Apr 2022"/>
-                        </ListItem>
-                        <ListItem>
-                        <ListItemIcon>
-                            <FolderIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Instagram Product Shoot" secondary="15 Mar 2022"/>
-                        </ListItem>
-                        <ListItem component={RouterLink} to={'/callsheets'}>
-                        <ListItemIcon>
-                            <FolderIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Event: Awesome Photo Thing" secondary="Jan 20 2022"/>
-                        </ListItem>
-                    
-                    </List>
-                </Box>
-            </Paper>     
+            component={RouterLink} 
+            to={'/events'} 
+            key="events"
+            variant="contained">
+                Events
+        </Button>
+        <br></br>
+        <Button 
+
+            component={RouterLink} 
+            to={'/callsheets'} 
+            key="callsheets"
+            variant="contained">
+                Call Sheets
+        </Button>
+            </Box>
                
         </Stack>
     </Box>  

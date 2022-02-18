@@ -1,23 +1,13 @@
 {
   "staff": [
     {
-      "id": 1,
-      "photo": "https://kaseyivanphotography.com/wp-content/uploads/2020/02/01-14027-post/Colorful-New-Hope-Portraits-and-Actor-Headshots-Kasey-Ivan-Photography-19-scaled(pp_w768_h1151).jpg",
-      "name": "Joe Handy",
-      "department": "lighting/",
-      "phone": "555-555-1212",
-      "email": "hello@hello.net",
-      "calltime": "15:03",
-      "notes": "joe is not ugly"
-    },
-    {
-      "name": "Nancy Drew",
+      "name": "Hermoine Granger",
       "photo": "https://westcottu.com/wp-content/uploads/chloe_0322ph-1.jpg",
-      "department": "Deviant",
+      "department": "Director",
       "phone": "1-222-333-4444",
-      "email": "mystery@nancy.com",
+      "email": "bookworm@hogwarts.com",
       "calltime": "3:30 pm",
-      "notes": "needs wardrobe ",
+      "notes": "Likes to bring her cat to the set, extra kind to all staff",
       "id": 2
     },
     {
@@ -27,7 +17,7 @@
       "phone": "1-222-333-4444",
       "email": "pineapple@home.com",
       "calltime": "14:00",
-      "notes": "needs water",
+      "notes": "Needs extra water, visitors need permission to enter work area - top secret!",
       "id": 3
     },
     {
@@ -37,7 +27,7 @@
       "phone": "1-222-333-4444",
       "email": "getjerry@home.com",
       "calltime": "14:00",
-      "notes": "none",
+      "notes": "Careful of the claws!",
       "id": 4
     },
     {
@@ -49,16 +39,6 @@
       "calltime": "6am",
       "notes": "Jonny is weird, but helpful when it comes to solving stupid problems that a cat could probably figure out.",
       "id": 5
-    },
-    {
-      "name": "hello",
-      "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
-      "department": "things",
-      "phone": "666-666-6666",
-      "email": "me@net.net",
-      "calltime": "6am",
-      "notes": "things happen",
-      "id": 6
     }
   ],
   "events": [

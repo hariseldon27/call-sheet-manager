@@ -45,18 +45,20 @@ function StaffContainerMaterial() {
                     p: 2,
                     backgroundColor: 'secondary.dark',
                     display: 'flex',
-                    alignContent: 'center'
+                    alignContent: 'center',
+                    borderRadius: '4%'
+            
                 }}>
                     <Box sx={{
                     }}>
-                    <Card sx={{ maxWidth: 150 }}>
+                    <Card sx={{ maxWidth: 250,borderRadius: '4%' }}>
                         <CardMedia
                         component="img"
                         image="https://st3.depositphotos.com/9998432/13335/v/600/depositphotos_133351964-stock-illustration-default-placeholder-woman.jpg"
                         alt="staff headshot placeholder"
                         />
                         <CardActions>
-                            <Button size="large" color="secondary" component={RouterLink} to={`/staff/new`} size="small"> Click to Add New Staff<AddCircleIcon /> </Button>
+                            <Button size="large" color="secondary" component={RouterLink} to={`/staff/new`} size="small"> Click to Add New Staff Here  <AddCircleIcon  /> </Button>
                         </CardActions>
                     </Card>
                     </Box>
@@ -67,18 +69,24 @@ function StaffContainerMaterial() {
   return (
     <Container>
     <CssBaseline />
-    <Typography variant="h4" component="h2">What a lovely staff...</Typography>
+    <Typography variant="h4" component="h2">- Staff -
+    
+    </Typography>
         <Container sx={{ 
             display: 'flex',
             flexWrap: 'nowrap',
             p: 1,
             m: 1,
+         
             }} 
             maxWidth="md"
+            
             >
-            <Grid container spacing={2}>
-                {newStaffButton()}
+
+            <Grid container spacing={2} >
+                
                 {staffCardRender}
+                {newStaffButton()}
             </Grid>
         </Container>
     </Container>
