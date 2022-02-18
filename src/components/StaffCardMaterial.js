@@ -5,13 +5,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import { deepOrange } from '@mui/material/colors';
-import { useParams, Link } from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 
 
 function StaffCardMaterial( {  } ) {
