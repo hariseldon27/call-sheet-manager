@@ -15,7 +15,7 @@ function HeaderMaterial() {
         color: '#fff',
         display: 'flex',
     }}>
-        <Typography variant="h4" component="h1" >Call Sheet Manager <ManageAccountsIcon /></Typography>
+        <Typography variant="h4" component="h1" fontFamily='Helvetica Neue'>Call Sheet Manager <ManageAccountsIcon size='large'/></Typography>
       
     </Box>
     

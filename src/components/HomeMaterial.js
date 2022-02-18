@@ -20,12 +20,6 @@ import { pink } from '@mui/material/colors'
 
 function HomeMaterial() {
 
-    // const buttons = [
-    //     <Button component={RouterLink} to={'/staff'} key="staff">Staff</Button>,
-    //     <Button component={RouterLink} to={'/events'} key="events">Events</Button>,
-    //     <Button component={RouterLink} to={'/callsheets'} key="callsheets">Call Sheets</Button>,
-    //   ];
-
 
   return (
     <Box sx={{
@@ -44,25 +38,29 @@ function HomeMaterial() {
             component={RouterLink} 
             to={'/staff'} 
             key="staff"
-            variant="contained">
+            variant="contained"
+            padding= '50px'
+            m = '50px' >
                 Staff
         </Button>
+        <br></br>
         <Button 
+            
             component={RouterLink} 
             to={'/events'} 
             key="events"
             variant="contained">
                 Events
         </Button>
+        <br></br>
         <Button 
+
             component={RouterLink} 
             to={'/callsheets'} 
             key="callsheets"
             variant="contained">
                 Call Sheets
         </Button>
-                
-               
             </Box>
                
         </Stack>
