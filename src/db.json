@@ -44,22 +44,58 @@
   "events": [
     {
       "id": 1,
-      "name": "walmart photo-op",
+      "name": "Portland Opera House",
       "date": "2022-11-21",
-      "duration": "2:00 - 6:00",
-      "location": "1526 30th Ave, San Francisco, CA 94122",
-      "directions": "to some ",
-      "notes": "I like turtles, but then again it is turtles all the way down!",
-      "time": "15:03"
+      "duration": "3 hrs",
+      "location": "1800 Portland Avenue",
+      "directions": "",
+      "notes": "Bring light stands",
+      "time": "18:30",
+      "photo": "https://mrjpfiles.s3.us-west-2.amazonaws.com/oregon2-color-horiz.jpg"
+    },
+    {
+      "name": "Los Angeles Dance Project",
+      "date": "2022-02-22",
+      "duration": "2 hours",
+      "location": "Griffith Park",
+      "directions": "",
+      "time": "10:45",
+      "notes": "Bring Water!asfdasf",
+      "id": 2,
+      "photo": "https://mrjpfiles.s3.us-west-2.amazonaws.com/california39-bw-135-ladp.jpg"
+    },
+    {
+      "name": "Paris-Roubaix",
+      "date": "2022-04-17",
+      "duration": "all day",
+      "location": "Belgium",
+      "directions": "",
+      "time": "08:00",
+      "notes": "Take the back roads...and Hendrik",
+      "id": 3,
+      "photo": "https://mrjpfiles.s3.us-west-2.amazonaws.com/cycling9-europe.jpg"
+    },
+    {
+      "name": "Cal Arts New Works ",
+      "date": "2022-05-01",
+      "duration": "3 hours",
+      "location": "1900 McBean Pkwy, Valencia CA",
+      "directions": "",
+      "time": "16:00",
+      "notes": "Take your time getting there.",
+      "id": 4,
+      "photo": "https://mrjpfiles.s3.us-west-2.amazonaws.com/california21-color-horiz-friends.jpg"
     }
   ],
   "callsheets": [
     {
       "id": 1,
-      "staffers": [{
-        "id": 1,
-        "name": ""
-      }],
+      "staffers": [
+        {
+          "id": 1,
+          "name": ""
+        }
+      ],
       "callSheetName": "",
       "callSheetStaffIds": [],
       "callSheetEventId": "",
@@ -67,10 +103,12 @@
     },
     {
       "id": 1,
-      "staffers": [{
-        "id": 1,
-        "name": ""
-      }],
+      "staffers": [
+        {
+          "id": 1,
+          "name": ""
+        }
+      ],
       "callSheetName": "",
       "callSheetStaffIds": [],
       "callSheetEventId": "",

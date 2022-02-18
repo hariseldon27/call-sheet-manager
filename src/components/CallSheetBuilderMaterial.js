@@ -16,6 +16,7 @@ import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import Avatar from '@mui/material/Avatar';
 
 
 
@@ -148,6 +149,7 @@ function CallSheetBuilderMaterial() {
         const { name, photo, department, phone, email, calltime, notes, id } = rowObject
         return (
             <>
+            <TableCell key={name}><Typography component="p" variant="h6"><Avatar alt="{name}" src={photo} /></Typography></TableCell>
             <TableCell key={name}><Typography component="p" variant="h6">{name}</Typography></TableCell>
             <TableCell key={email}><Typography variant="body2">{email}</Typography></TableCell>
             <TableCell key={phone}><Typography variant="body2" textAlign="center">{phone}</Typography></TableCell>
@@ -162,12 +164,9 @@ function CallSheetBuilderMaterial() {
 
     const renderCallSheetStaff = staffToAdd.map((staffId) => {
         return (
-            
-                    <>
-                                             
-                            {renderRow(staffId, staffCallSheetCards)} 
-                    </>
-            
+                <>        
+                    {renderRow(staffId, staffCallSheetCards)} 
+                </>
             )
         })
         //render our call sheet event info
@@ -190,10 +189,9 @@ function CallSheetBuilderMaterial() {
                                 size="large" 
                                 id={eventId}
                                 onClick={handleEventRemove}
-                                
                                 >Remove
                                 </Button>
-                        <Table>
+                        <Table sx={{ minWidth: 'md' }} size="small">
                             <TableBody>
                                 {renderEventRowHead(eventId, eventCallSheetCards)}
                             </TableBody>
@@ -237,24 +235,25 @@ function CallSheetBuilderMaterial() {
                             m: 1,
                             width: 'md'
                             }} 
-                            spacing={2}
+                            spacing={4}
                             >
                             <Typography variant="h4">Choose Staffers</Typography>
-
-                                {/* left side this holds the staff buttons to add to the sheet */}
-                                {staffers.map((staff, id) => (
-                                    <Grid item key={uuid()}>
-                                        <Button 
-                                        key={id} 
-                                        variant="outlined" 
-                                        color="secondary" 
-                                        size="large" 
-                                        id={id}
-                                        onClick={handleStaffClick}
-                                        >{staff.name}</Button>
-                                    </Grid>
-                                ))}     
-
+                            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, }}>
+                                    {/* left side this holds the staff buttons to add to the sheet */}
+                                    {staffers.map((staff, id) => (
+                                        
+                                            <Button
+                                            item 
+                                            key={id} 
+                                            variant="outlined" 
+                                            color="secondary" 
+                                            size="large" 
+                                            id={id}
+                                            onClick={handleStaffClick}
+                                            >{staff.name}</Button>
+                                        
+                                    ))}     
+                            </Box>
                 </Container>
 
                 <Container sx={{ 
@@ -274,9 +273,8 @@ function CallSheetBuilderMaterial() {
                                                 id={eventInEditor.id}
                                                 label="event-selector"
                                                 onChange={handleEventClick}
-                                                value={eventInEditor.id}
+                                                value={eventIdToRender()}
                                                 displayEmpty
-                                                displayValue={eventInEditor}
 
                                                 >
                                                 {eachEvent.map((selection) => (
@@ -284,12 +282,14 @@ function CallSheetBuilderMaterial() {
                                                 ))}
                                             </Select>
                                     </Grid>
-
-
                 </Container>
 
             {/* close the top container */}
             </Box>
+
+            <Box sx={{ display: 'grid'}} >
+                
+            </Box> 
             <Box>
                 <Box>
                 <Typography variant="h4" component="h3">Event In Call Sheet</Typography>
@@ -298,14 +298,16 @@ function CallSheetBuilderMaterial() {
                     minHeight: '50px',
                     height: 'auto',
                     width: '100%',
+                    my: 4,
                 }}>
                     {renderCallSheetEvent}
                 </Box>
                 </Box>
                 <Box sx={{
-                    backgroundColor: 'secondary.main',
+                    backgroundColor: 'primary',
                     height: '50',
-                    width: '100'
+                    width: '100',
+                    my: 4,
                 }}>
                     <Typography variant="h4" component="h3" >Staff In Call Sheet</Typography>
                     <Box sx={{
@@ -313,13 +315,15 @@ function CallSheetBuilderMaterial() {
                         minHeight: '50px',
                         height: 'auto',
                         width: '100%',
+                        my: 4,
                     }}>
                         <TableContainer>
-                        <Table>
+                        <Table sx={{ minWidth: 'md' }} size="small">
                         
                             <TableHead>
                                 <TableRow key={uuid()}>
                                     <TableCell key="tableDel"> </TableCell>
+                                    <TableCell key="tablePicture"> </TableCell>
                                     <TableCell key="tableName">Name</TableCell>
                                     <TableCell key="tableEmail">Email</TableCell>
                                     <TableCell key="tablePhone">Phone</TableCell>
@@ -333,44 +337,7 @@ function CallSheetBuilderMaterial() {
                         </Table>
                         </TableContainer>
                     </Box>
-                </Box>                
-                    <Box sx={{
-                        width: '100%',
-                        backgroundColor: 'secondary',
-                        p: 2,
-                        py: 5,
-                        display: 'grid',
-                    }}>
-                        <TextField
-                            label="Call Sheet Name" 
-                            variant="outlined" 
-                            name="name"
-                            value={formData.name} 
-                            onChange={handleEditChange}
-                            />
-                        <TextField
-                            label="Event Notes...Parking, wardrobe, etc" 
-                            variant="outlined" 
-                            name="notes"
-                            multiline
-                            value={formData.notes} 
-                            onChange={handleEditChange}
-                            />
-                        <Button 
-                                key={uuid()} 
-                                id="addText"
-                                variant="outlined" 
-                                color="secondary" 
-                                size="large" 
-                                onClick={handleAddText}
-                                minheight='100%'
-                                > CREATE PDF
-                        </Button>
-                    </Box>
-                <Box>
-                <Typography variant="body2">{formData.name}</Typography>
-                <Typography variant="body2">{formData.notes}</Typography>
-                </Box>    
+                </Box>                   
             </Box>
         </Box>
         
