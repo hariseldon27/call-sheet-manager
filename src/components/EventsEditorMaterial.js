@@ -17,6 +17,7 @@ duration: '',
 location: '',
 directions: '',
 notes: '',
+photo: ''
 })
 
 const {id} = useParams()
@@ -120,6 +121,16 @@ function handleEventEditChange(e){
                 onChange={handleEventEditChange}
                 />
             
+                <TextField
+                label="Image? link me" 
+                name="photo"
+                value={eventEdit.photo} 
+                onChange={handleEventEditChange}
+                variant="outlined" 
+                multiline
+                maxRows={4}
+                />
+
                 <TextField
                 label="Notes..." 
                 name="notes"

@@ -33,12 +33,14 @@ return (
       textAlign: 'center',
       p: 1,
       backgroundColor: 'secondary.main',
+      borderRadius: '4%'
   }}>
       <Box sx={{
         flexGrow: 1,
         alignContent: 'center',
         display: 'grid',
         mx: 'auto',
+        borderRadius: '4%'
         
       }}>
         <Card sx={{ display: 'flex' }}>
@@ -74,9 +76,8 @@ return (
             <Box sx={{
                 alignContent: 'center',
             }}>
-                <CardActions >
+                <CardActions sx={{display:'inline'}}>
                 <Button component={RouterLink} to={`/events/${id}/editor`} size="small"> <EditIcon /> </Button>
-                <Button size="small"> <DeleteIcon /> </Button>
                 </CardActions>
             </Box>
           </CardContent>
